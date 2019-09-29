@@ -1,14 +1,42 @@
-# slider_button
+# Slider Button
 
-A new Flutter package.
 
-## Getting Started
+A package provides an easy implementation of a Slider Button to cancel current transaction or screen.
+Highly customizable iphone alike looking widget.
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+<p>
+    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button.gif"/>
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+</p>
+
+## How to use
+
+```dart
+import 'package:slider_button/slider_button.dart';
+
+```
+
+```dart
+Center(child: SliderButton(
+      action: () {
+        ///Do something here
+        Navigator.of(context).pop();
+      },
+       label: Text(
+          "Slide to cancel Event",
+          style: TextStyle(
+              color: Color(0xff4a4a4a), fontWeight: FontWeight.w500, fontSize: 17),
+        ),
+      icon: Text(
+        "x",
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w400,
+          fontSize: 44,
+        ),
+      ),
+
+
+    ));
+
+```

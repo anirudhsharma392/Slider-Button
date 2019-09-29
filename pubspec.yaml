@@ -2,7 +2,7 @@ name: slider_button
 description: A new Flutter package.
 version: 0.0.1
 author: Flutter Glutter <FlutterGlutter@gmail.com>
-homepage:
+homepage: https://github.com/anirudhsharma392/Slider-Button
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

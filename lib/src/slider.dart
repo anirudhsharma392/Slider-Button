@@ -7,6 +7,8 @@ class SliderButton extends StatefulWidget {
   final double width;
   final Text label;
   final Color backgroundColor;
+  final Color baseColor;
+  final Color highlightedColor;
   final Alignment alignLabel;
   final Widget icon;
   final Function action;
@@ -17,6 +19,8 @@ class SliderButton extends StatefulWidget {
     this.width = 260,
     this.alignLabel = const Alignment(0.4, 0),
     this.backgroundColor = const Color(0xffececec),
+    this.baseColor = const Color(0xff4a4a4a),
+    this.highlightedColor = Colors.white,
     this.label = const Text(
       "Slide to cancel Event",
       style: TextStyle(
@@ -60,8 +64,8 @@ class _SliderButtonState extends State<SliderButton> {
                 Container(
                   alignment: widget.alignLabel,
                   child: Shimmer.fromColors(
-                    baseColor: Color(0xff4a4a4a),
-                    highlightColor: Theme.of(context).canvasColor,
+                    baseColor: widget.baseColor,
+                    highlightColor: widget.highlightedColor,
                     child: widget.label,
                   ),
                 ),
