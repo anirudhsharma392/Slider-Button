@@ -48,8 +48,13 @@ Center(child: SliderButton(
     <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button_2.gif?raw=true"/>
 
 </p>
-```dart
 
+```dart
+import 'package:slider_button/slider_button.dart';
+
+```
+
+```dart
 SliderButton(
       action: () {
         ///Do something here
