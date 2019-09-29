@@ -9,6 +9,7 @@ class SliderButton extends StatefulWidget {
   final Color backgroundColor;
   final Color baseColor;
   final Color highlightedColor;
+  final Color buttonColor;
   final Alignment alignLabel;
   final Widget icon;
   final Function action;
@@ -20,6 +21,7 @@ class SliderButton extends StatefulWidget {
     this.alignLabel = const Alignment(0.4, 0),
     this.backgroundColor = const Color(0xffececec),
     this.baseColor = const Color(0xff4a4a4a),
+    this.buttonColor =Colors.black,
     this.highlightedColor = Colors.white,
     this.label = const Text(
       "Slide to cancel Event",
@@ -53,56 +55,56 @@ class _SliderButtonState extends State<SliderButton> {
   Widget build(BuildContext context) {
     return flag == true
         ? Container(
-            height: widget.height,
-            width: widget.width,
-            decoration: BoxDecoration(
-                color: widget.backgroundColor,
-                borderRadius: BorderRadius.circular(100)),
-            alignment: Alignment.centerLeft,
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  alignment: widget.alignLabel,
-                  child: Shimmer.fromColors(
-                    baseColor: widget.baseColor,
-                    highlightColor: widget.highlightedColor,
-                    child: widget.label,
-                  ),
-                ),
-                Dismissible(
-                    key: Key("cancel"),
-                    direction: DismissDirection.startToEnd,
+        height: widget.height,
+        width: widget.width,
+        decoration: BoxDecoration(
+            color: widget.backgroundColor,
+            borderRadius: BorderRadius.circular(100)),
+        alignment: Alignment.centerLeft,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              alignment: widget.alignLabel,
+              child: Shimmer.fromColors(
+                baseColor: widget.baseColor,
+                highlightColor: widget.highlightedColor,
+                child: widget.label,
+              ),
+            ),
+            Dismissible(
+                key: Key("cancel"),
+                direction: DismissDirection.startToEnd,
 
-                    ///gives direction of swipping in argument.
-                    onDismissed: (dir) {
-                      setState(() {
-                        flag = false;
-                      });
-                      widget.action();
-                    },
-                    child: Container(
-                      width: widget.width - 60,
-                      height: widget.height,
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                        height: widget.height,
-                        width: widget.height,
-                        alignment: Alignment.topCenter,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.black54,
-                              blurRadius: 2,
-                            ),
-                          ],
-                          color: Colors.black,
-                          shape: BoxShape.circle,
+                ///gives direction of swipping in argument.
+                onDismissed: (dir) {
+                  setState(() {
+                    flag = false;
+                  });
+                  widget.action();
+                },
+                child: Container(
+                  width: widget.width - 60,
+                  height: widget.height,
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    height: widget.height,
+                    width: widget.height,
+                    alignment: Alignment.topCenter,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Colors.black54,
+                          blurRadius: 2,
                         ),
-                        child: widget.icon,
-                      ),
-                    )),
-              ],
-            ))
+                      ],
+                      color: widget.buttonColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: widget.icon,
+                  ),
+                )),
+          ],
+        ))
         : Container();
   }
 }
