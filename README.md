@@ -49,6 +49,7 @@ Center(child: SliderButton(
 
 </p>
 ```dart
+
 SliderButton(
       action: () {
         ///Do something here
