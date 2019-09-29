@@ -1,7 +1,7 @@
 # Slider Button
 
 
-A package provides an easy implementation of a Slider Button to cancel current transaction or screen.
+This package provides an easy implementation of a Slider Button to cancel current transaction or screen.
 Highly customizable iphone alike looking widget.
 
 
@@ -10,7 +10,7 @@ Highly customizable iphone alike looking widget.
 #Type1
 
 <p>
-    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button.gif?raw=true"/>
+    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button_1.gif?raw=true"/>
 
 </p>
 
@@ -45,7 +45,7 @@ Center(child: SliderButton(
 ```
 ## Type 2
 <p>
-    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button.gif?raw=true"/>
+    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button_2.gif?raw=true"/>
 
 </p>
 ```dart
