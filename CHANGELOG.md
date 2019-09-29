@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.2] - TODO: 29/09/19.
 
-* TODO: Describe initial release.
+* TODO: A very basic Component.Not fully tested yet.

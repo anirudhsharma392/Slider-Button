@@ -5,7 +5,7 @@ A package provides an easy implementation of a Slider Button to cancel current t
 Highly customizable iphone alike looking widget.
 
 <p>
-    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button.gif"/>
+    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button.gif?raw=true"/>
 
 </p>
 
