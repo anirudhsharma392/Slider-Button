@@ -1,4 +1,3 @@
-
 library shimmer;
 
 import 'package:flutter/material.dart';
@@ -61,29 +60,29 @@ class Shimmer extends StatefulWidget {
   ///
   Shimmer.fromColors(
       {Key key,
-        @required this.child,
-        @required Color baseColor,
-        @required Color highlightColor,
-        this.period = const Duration(milliseconds: 1500),
-        this.direction = ShimmerDirection.ltr,
-        this.loop = 0})
+      @required this.child,
+      @required Color baseColor,
+      @required Color highlightColor,
+      this.period = const Duration(milliseconds: 1500),
+      this.direction = ShimmerDirection.ltr,
+      this.loop = 0})
       : gradient = LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.centerRight,
-      colors: [
-        baseColor,
-        baseColor,
-        highlightColor,
-        baseColor,
-        baseColor
-      ],
-      stops: [
-        0.0,
-        0.35,
-        0.5,
-        0.65,
-        1.0
-      ]),
+            begin: Alignment.topLeft,
+            end: Alignment.centerRight,
+            colors: [
+              baseColor,
+              baseColor,
+              highlightColor,
+              baseColor,
+              baseColor
+            ],
+            stops: [
+              0.0,
+              0.35,
+              0.5,
+              0.65,
+              1.0
+            ]),
         super(key: key);
 
   @override
@@ -160,7 +159,6 @@ class _Shimmer extends SingleChildRenderObjectWidget {
     shimmer.percent = percent;
   }
 }
-
 
 class _ShimmerFilter extends RenderProxyBox {
   final _clearPaint = Paint();

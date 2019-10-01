@@ -7,7 +7,7 @@ Highly customizable iphone alike looking widget.
 
 
 ## How to use
-## Type1
+### Type1
 
 <p>
     <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button_1.gif?raw=true"/>
