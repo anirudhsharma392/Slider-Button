@@ -1,5 +1,5 @@
 # Slider Button
-
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)]
 
 This package provides an easy implementation of a Slider Button to cancel current transaction or screen.
 Highly customizable iphone alike looking widget.
@@ -7,7 +7,7 @@ Highly customizable iphone alike looking widget.
 
 
 ## How to use
-### Type1
+### Type 1
 This is a Circle type widget.
 You just need to define the border radius to swap between rectangle and circle type widget.
 
