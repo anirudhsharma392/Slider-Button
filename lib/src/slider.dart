@@ -24,14 +24,14 @@ class SliderButton extends StatefulWidget {
       blurRadius: 4,
     ),
     this.height = 60,
-    this.width = 260,
+    this.width = 240,
     this.alignLabel = const Alignment(0.4, 0),
     this.backgroundColor = const Color(0xffececec),
     this.baseColor = const Color(0xff4a4a4a),
     this.buttonColor = Colors.black,
     this.highlightedColor = Colors.white,
     this.label = const Text(
-      "Slide to cancel Event",
+      "Slide to cancel !",
       style: TextStyle(
           color: Color(0xff4a4a4a), fontWeight: FontWeight.w500, fontSize: 17),
     ),
