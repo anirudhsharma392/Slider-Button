@@ -3,6 +3,7 @@ library shimmer;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+
 ///
 /// An enum defines all supported directions of shimmer effect
 ///

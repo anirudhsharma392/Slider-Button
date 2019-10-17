@@ -3,18 +3,30 @@ import 'package:flutter/material.dart';
 import 'shimmer.dart';
 
 class SliderButton extends StatefulWidget {
+  ///Sets the radius of corners of a button.
   final double radius;
+
+  ///Use it to define a height and width of widget.
   final double height;
   final double width;
+
+  ///Use it to define a color of widget.
   final Color backgroundColor;
   final Color baseColor;
   final Color highlightedColor;
   final Color buttonColor;
+
+  ///Change it to gave a label on a widget of your choice.
   final Text label;
+
+  ///Gives a alignment to a slidder icon.
   final Alignment alignLabel;
   final BoxShadow boxShadow;
   final Widget icon;
   final Function action;
+
+  ///Make it false if you want to deactivate the shimmer effect.
+  final bool shimmer;
 
   SliderButton({
     @required this.action,
@@ -23,6 +35,7 @@ class SliderButton extends StatefulWidget {
       color: Colors.black,
       blurRadius: 4,
     ),
+    this.shimmer = true,
     this.height = 60,
     this.width = 240,
     this.alignLabel = const Alignment(0.4, 0),
@@ -72,11 +85,13 @@ class _SliderButtonState extends State<SliderButton> {
               children: <Widget>[
                 Container(
                   alignment: widget.alignLabel,
-                  child: Shimmer.fromColors(
-                    baseColor: widget.baseColor,
-                    highlightColor: widget.highlightedColor,
-                    child: widget.label,
-                  ),
+                  child: widget.shimmer
+                      ? Shimmer.fromColors(
+                          baseColor: widget.baseColor,
+                          highlightColor: widget.highlightedColor,
+                          child: widget.label,
+                        )
+                      : widget.label,
                 ),
                 Dismissible(
                     key: Key("cancel"),

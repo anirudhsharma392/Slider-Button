@@ -1,3 +1,3 @@
-## [0.0.4] - TODO: 29/09/19.
+## [0.2.0] - TODO: 15/10/19.
 
-* TODO: Added Square type button .
+* TODO: Added Shimmer as an optional characteristic.
