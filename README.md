@@ -104,7 +104,7 @@ There are several options that allow for more control:
 | `highlightedColor` | Colors.white | Gives a shimmer highlighted color  to a widget |
 | `buttonColor` | Colors.black | Gives a color to a slidder button |
 | `label` | Text(
-                  /"Slide to cancel !/",
+                  'Slide to cancel !',
                   style: TextStyle(
                       fontSize: 17),
                 ) | A text widget which assigns a label. |
