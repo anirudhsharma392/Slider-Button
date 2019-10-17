@@ -103,9 +103,8 @@ There are several options that allow for more control:
 | `baseColor` | Color(0xff4a4a4a) | Gives a shimmer base color to a widget |
 | `highlightedColor` | Colors.white | Gives a shimmer highlighted color  to a widget |
 | `buttonColor` | Colors.black | Gives a color to a slidder button |
-| `label` | Text(
-                  "Slide to cancel !",
-                  style: TextStyle(
+| `label` | Text('Slide to cancel !',
+style: TextStyle(
                       fontSize: 17),
                 ) | A text widget which assigns a label. |
 | `alignLabel` | Alignment(0.4, 0) | Aligns text label |
@@ -117,8 +116,7 @@ There are several options that allow for more control:
                      child: Icon(
                    Icons.power_settings_new,
                    color: Colors.white,
-                   size: 40.0,
-                   semanticLabel: 'Text to announce in accessibility modes',
+                   size: 40.0
                  )) | A widget to provide an icon to a button |
 | `shimmer` | true | enables/disables shimmer effect on the label |
 
