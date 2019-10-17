@@ -105,16 +105,8 @@ There are several options that allow for more control:
 | `buttonColor` | Colors.black | Gives a color to a slidder button |
 | `label` | Text("Slide to cancel !", style: TextStyle( fontSize: 17),) | A text widget which assigns a label. |
 | `alignLabel` | Alignment(0.4, 0) | Aligns text label |
-| `boxShadow` | BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 4,
-                    ) | Gives a shadow to a slidder button |
-| `icon` | Center(
-                     child: Icon(
-                   Icons.power_settings_new,
-                   color: Colors.white,
-                   size: 40.0,
-                 )) | A widget to provide an icon to a button |
+| `boxShadow` | BoxShadow(color: Colors.black,blurRadius: 4,) | Gives a shadow to a slidder button |
+| `icon` | Center( child: Icon( Icons.power_settings_new,color: Colors.white,size: 40.0,)) | A widget to provide an icon to a button |
 | `shimmer` | true | enables/disables shimmer effect on the label |
 
 <br>
