@@ -108,6 +108,7 @@ There are several options that allow for more control:
 | `boxShadow` | BoxShadow(color: Colors.black,blurRadius: 4,) | Gives a shadow to a slidder button |
 | `icon` | Center( child: Icon( Icons.power_settings_new,color: Colors.white,size: 40.0,)) | A widget to provide an icon to a button |
 | `shimmer` | true | enables/disables shimmer effect on the label |
+| `dismissible` | true | Make it false if you want maintain the widget in the tree |
 
 <br>
 <br>
