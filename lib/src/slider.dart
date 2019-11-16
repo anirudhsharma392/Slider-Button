@@ -28,6 +28,9 @@ class SliderButton extends StatefulWidget {
   ///Make it false if you want to deactivate the shimmer effect.
   final bool shimmer;
 
+  ///Make it false if you want maintain the widget in the tree.
+  final bool dismissible;
+
   SliderButton({
     @required this.action,
     this.radius = 100,
@@ -56,6 +59,7 @@ class SliderButton extends StatefulWidget {
         fontSize: 44,
       ),
     ),
+    this.dismissible = true,
   });
 
   @override
@@ -74,55 +78,67 @@ class _SliderButtonState extends State<SliderButton> {
   @override
   Widget build(BuildContext context) {
     return flag == true
-        ? Container(
-            height: widget.height,
-            width: widget.width,
-            decoration: BoxDecoration(
-                color: widget.backgroundColor,
-                borderRadius: BorderRadius.circular(widget.radius)),
-            alignment: Alignment.centerLeft,
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  alignment: widget.alignLabel,
-                  child: widget.shimmer
-                      ? Shimmer.fromColors(
-                          baseColor: widget.baseColor,
-                          highlightColor: widget.highlightedColor,
-                          child: widget.label,
-                        )
-                      : widget.label,
-                ),
-                Dismissible(
-                    key: Key("cancel"),
-                    direction: DismissDirection.startToEnd,
-
-                    ///gives direction of swipping in argument.
-                    onDismissed: (dir) {
-                      setState(() {
-                        flag = false;
-                      });
-                      widget.action();
-                    },
-                    child: Container(
-                      width: widget.width - 60,
-                      height: widget.height,
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                        height: widget.height,
-                        width: widget.height,
-                        alignment: Alignment.topCenter,
-                        decoration: BoxDecoration(
-                            boxShadow: [
-                              widget.boxShadow,
-                            ],
-                            color: widget.buttonColor,
-                            borderRadius: BorderRadius.circular(widget.radius)),
-                        child: widget.icon,
-                      ),
-                    )),
-              ],
-            ))
-        : Container();
+        ? _control()
+        : widget.dismissible == true
+            ? Container()
+            : Container(
+                child: _control(),
+              );
   }
+
+  Widget _control() => Container(
+        height: widget.height,
+        width: widget.width,
+        decoration: BoxDecoration(
+            color: widget.backgroundColor,
+            borderRadius: BorderRadius.circular(widget.radius)),
+        alignment: Alignment.centerLeft,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              alignment: widget.alignLabel,
+              child: widget.shimmer
+                  ? Shimmer.fromColors(
+                      baseColor: widget.baseColor,
+                      highlightColor: widget.highlightedColor,
+                      child: widget.label,
+                    )
+                  : widget.label,
+            ),
+            Dismissible(
+              key: Key("cancel"),
+              direction: DismissDirection.startToEnd,
+
+              ///gives direction of swipping in argument.
+              onDismissed: (dir) {
+                setState(() {
+                  if (widget.dismissible) {
+                    flag = false;
+                  } else {
+                    flag = !flag;
+                  }
+                });
+                widget.action();
+              },
+              child: Container(
+                width: widget.width - 60,
+                height: widget.height,
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  height: widget.height,
+                  width: widget.height,
+                  alignment: Alignment.topCenter,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        widget.boxShadow,
+                      ],
+                      color: widget.buttonColor,
+                      borderRadius: BorderRadius.circular(widget.radius)),
+                  child: widget.icon,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
 }
