@@ -4,7 +4,10 @@
 This package provides an easy implementation of a Slider Button to cancel current transaction or screen.
 Highly customizable iphone alike looking widget.
 
+<p>
+    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button_3.gif?raw=true"/>
 
+</p>
 
 ## How to use
 ### Type 1
@@ -97,6 +100,7 @@ There are several options that allow for more control:
 |  Properties  |   Default   |   Description   |
 |--------------|-----------------|--------------|
 | `action` | null | (required) Define an action after slidding a button |
+| `vibrationFlag` | true | controls vibration on successful dismissed |
 | `height` | 60 | Gives a height to a widget |
 | `width` | 240 | Gives a width to a widget |
 | `backgroundColor` | Color(0xffececec) | Gives a background color to a widget |
@@ -109,9 +113,11 @@ There are several options that allow for more control:
 | `icon` | Center( child: Icon( Icons.power_settings_new,color: Colors.white,size: 40.0,)) | A widget to provide an icon to a button |
 | `shimmer` | true | enables/disables shimmer effect on the label |
 | `dismissible` | true | Make it false if you want maintain the widget in the tree |
+| `buttonSize` | 60 | Gives size to a button |
 
 <br>
 <br>
+
 
 # 👍 Contribution
 1. Fork it

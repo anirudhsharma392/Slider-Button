@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vibration/vibration.dart';
 
 import 'shimmer.dart';
 
@@ -9,6 +10,7 @@ class SliderButton extends StatefulWidget {
   ///Use it to define a height and width of widget.
   final double height;
   final double width;
+  final double buttonSize;
 
   ///Use it to define a color of widget.
   final Color backgroundColor;
@@ -31,6 +33,8 @@ class SliderButton extends StatefulWidget {
   ///Make it false if you want maintain the widget in the tree.
   final bool dismissible;
 
+  final bool vibrationFlag;
+
   SliderButton({
     @required this.action,
     this.radius = 100,
@@ -38,29 +42,28 @@ class SliderButton extends StatefulWidget {
       color: Colors.black,
       blurRadius: 4,
     ),
+    this.vibrationFlag = true,
     this.shimmer = true,
-    this.height = 60,
-    this.width = 240,
+    this.height = 70,
+    this.buttonSize = 60,
+    this.width = 250,
     this.alignLabel = const Alignment(0.4, 0),
-    this.backgroundColor = const Color(0xffececec),
-    this.baseColor = const Color(0xff4a4a4a),
-    this.buttonColor = Colors.black,
+    this.backgroundColor = const Color(0xffe0e0e0),
+    this.baseColor = Colors.black87,
+    this.buttonColor = Colors.white,
     this.highlightedColor = Colors.white,
     this.label = const Text(
       "Slide to cancel !",
-      style: TextStyle(
-          color: Color(0xff4a4a4a), fontWeight: FontWeight.w500, fontSize: 17),
+      style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
     ),
-    this.icon = const Text(
-      "x",
-      style: TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.w400,
-        fontSize: 44,
-      ),
+    this.icon = const Icon(
+      Icons.power_settings_new,
+      color: Colors.red,
+      size: 30.0,
+      semanticLabel: 'Text to announce in accessibility modes',
     ),
     this.dismissible = true,
-  });
+  }) : assert(buttonSize <= height);
 
   @override
   _SliderButtonState createState() => _SliderButtonState();
@@ -80,65 +83,73 @@ class _SliderButtonState extends State<SliderButton> {
     return flag == true
         ? _control()
         : widget.dismissible == true
-            ? Container()
-            : Container(
-                child: _control(),
-              );
+        ? Container()
+        : Container(
+      child: _control(),
+    );
   }
 
   Widget _control() => Container(
-        height: widget.height,
-        width: widget.width,
-        decoration: BoxDecoration(
-            color: widget.backgroundColor,
-            borderRadius: BorderRadius.circular(widget.radius)),
-        alignment: Alignment.centerLeft,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              alignment: widget.alignLabel,
-              child: widget.shimmer
-                  ? Shimmer.fromColors(
-                      baseColor: widget.baseColor,
-                      highlightColor: widget.highlightedColor,
-                      child: widget.label,
-                    )
-                  : widget.label,
-            ),
-            Dismissible(
-              key: Key("cancel"),
-              direction: DismissDirection.startToEnd,
-
-              ///gives direction of swipping in argument.
-              onDismissed: (dir) {
-                setState(() {
-                  if (widget.dismissible) {
-                    flag = false;
-                  } else {
-                    flag = !flag;
-                  }
-                });
-                widget.action();
-              },
-              child: Container(
-                width: widget.width - 60,
-                height: widget.height,
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  height: widget.height,
-                  width: widget.height,
-                  alignment: Alignment.topCenter,
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        widget.boxShadow,
-                      ],
-                      color: widget.buttonColor,
-                      borderRadius: BorderRadius.circular(widget.radius)),
-                  child: widget.icon,
-                ),
-              ),
-            ),
-          ],
+    height: widget.height,
+    width: widget.width,
+    decoration: BoxDecoration(
+        color: widget.backgroundColor,
+        borderRadius: BorderRadius.circular(widget.radius)),
+    alignment: Alignment.centerLeft,
+    child: Stack(
+      alignment: Alignment.centerLeft,
+      children: <Widget>[
+        Container(
+          alignment: widget.alignLabel,
+          child: widget.shimmer
+              ? Shimmer.fromColors(
+            baseColor: widget.baseColor,
+            highlightColor: widget.highlightedColor,
+            child: widget.label,
+          )
+              : widget.label,
         ),
-      );
+        Dismissible(
+          key: Key("cancel"),
+          direction: DismissDirection.startToEnd,
+
+          ///gives direction of swipping in argument.
+          onDismissed: (dir) async {
+            setState(() {
+              if (widget.dismissible) {
+                flag = false;
+              } else {
+                flag = !flag;
+              }
+            });
+
+            if (widget.vibrationFlag) {
+              Vibration.vibrate(duration: 200);
+            }
+
+            widget.action();
+          },
+          child: Container(
+            width: widget.width - 60,
+            height: widget.height,
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(
+                left: (widget.height - widget.buttonSize) / 2),
+            child: Container(
+              height: widget.buttonSize,
+              width: widget.buttonSize,
+              alignment: Alignment.topCenter,
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    widget.boxShadow,
+                  ],
+                  color: widget.buttonColor,
+                  borderRadius: BorderRadius.circular(widget.radius)),
+              child: Center(child: widget.icon),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
