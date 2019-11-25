@@ -136,7 +136,7 @@ packages:
     source: hosted
     version: "2.0.8"
   vibration:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: vibration
       url: "https://pub.dartlang.org"

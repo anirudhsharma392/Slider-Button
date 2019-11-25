@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vibration/vibration.dart';
+import 'package:slider_button/src/vibration.dart';
+
 
 import 'shimmer.dart';
 
