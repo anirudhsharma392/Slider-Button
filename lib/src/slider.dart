@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:slider_button/src/vibration.dart';
 
-
 import 'shimmer.dart';
 
 class SliderButton extends StatefulWidget {
+  ///To make button more customizable add your child widget
+  final Widget child;
+
   ///Sets the radius of corners of a button.
   final double radius;
 
@@ -43,6 +45,7 @@ class SliderButton extends StatefulWidget {
       color: Colors.black,
       blurRadius: 4,
     ),
+    this.child,
     this.vibrationFlag = true,
     this.shimmer = true,
     this.height = 70,
@@ -84,73 +87,77 @@ class _SliderButtonState extends State<SliderButton> {
     return flag == true
         ? _control()
         : widget.dismissible == true
-        ? Container()
-        : Container(
-      child: _control(),
-    );
+            ? Container()
+            : Container(
+                child: _control(),
+              );
   }
 
   Widget _control() => Container(
-    height: widget.height,
-    width: widget.width,
-    decoration: BoxDecoration(
-        color: widget.backgroundColor,
-        borderRadius: BorderRadius.circular(widget.radius)),
-    alignment: Alignment.centerLeft,
-    child: Stack(
-      alignment: Alignment.centerLeft,
-      children: <Widget>[
-        Container(
-          alignment: widget.alignLabel,
-          child: widget.shimmer
-              ? Shimmer.fromColors(
-            baseColor: widget.baseColor,
-            highlightColor: widget.highlightedColor,
-            child: widget.label,
-          )
-              : widget.label,
-        ),
-        Dismissible(
-          key: Key("cancel"),
-          direction: DismissDirection.startToEnd,
-
-          ///gives direction of swipping in argument.
-          onDismissed: (dir) async {
-            setState(() {
-              if (widget.dismissible) {
-                flag = false;
-              } else {
-                flag = !flag;
-              }
-            });
-
-            if (widget.vibrationFlag) {
-              Vibration.vibrate(duration: 200);
-            }
-
-            widget.action();
-          },
-          child: Container(
-            width: widget.width - 60,
-            height: widget.height,
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(
-                left: (widget.height - widget.buttonSize) / 2),
-            child: Container(
-              height: widget.buttonSize,
-              width: widget.buttonSize,
-              alignment: Alignment.topCenter,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    widget.boxShadow,
-                  ],
-                  color: widget.buttonColor,
-                  borderRadius: BorderRadius.circular(widget.radius)),
-              child: Center(child: widget.icon),
+        height: widget.height,
+        width: widget.width,
+        decoration: BoxDecoration(
+            color: widget.backgroundColor,
+            borderRadius: BorderRadius.circular(widget.radius)),
+        alignment: Alignment.centerLeft,
+        child: Stack(
+          alignment: Alignment.centerLeft,
+          children: <Widget>[
+            Container(
+              alignment: widget.alignLabel,
+              child: widget.shimmer
+                  ? Shimmer.fromColors(
+                      baseColor: widget.baseColor,
+                      highlightColor: widget.highlightedColor,
+                      child: widget.label,
+                    )
+                  : widget.label,
             ),
-          ),
+            Dismissible(
+              key: Key("cancel"),
+              direction: DismissDirection.startToEnd,
+
+              ///gives direction of swipping in argument.
+              onDismissed: (dir) async {
+                setState(() {
+                  if (widget.dismissible) {
+                    flag = false;
+                  } else {
+                    flag = !flag;
+                  }
+                });
+                if (widget.vibrationFlag && await Vibration.hasVibrator()) {
+                  try {
+                    Vibration.vibrate(duration: 200);
+                  } catch (e) {
+                    print(e);
+                  }
+                }
+
+                widget.action();
+              },
+              child: Container(
+                width: widget.width - (widget.height),
+                height: widget.height,
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.only(
+                  left: (widget.height - widget.buttonSize) / 2,
+                ),
+                child: widget.child ??
+                    Container(
+                      height: widget.buttonSize,
+                      width: widget.buttonSize,
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            widget.boxShadow,
+                          ],
+                          color: widget.buttonColor,
+                          borderRadius: BorderRadius.circular(widget.radius)),
+                      child: Center(child: widget.icon),
+                    ),
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 }

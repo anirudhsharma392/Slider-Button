@@ -100,6 +100,7 @@ There are several options that allow for more control:
 |  Properties  |   Default   |   Description   |
 |--------------|-----------------|--------------|
 | `action` | null | (required) Define an action after slidding a button |
+| `child` | null | For more customizable button add your own widget |
 | `vibrationFlag` | true | controls vibration on successful dismissed |
 | `height` | 60 | Gives a height to a widget |
 | `width` | 240 | Gives a width to a widget |

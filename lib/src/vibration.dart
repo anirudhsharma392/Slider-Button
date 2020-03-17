@@ -1,3 +1,6 @@
+///This Library is imported from
+///https://github.com/benjamindean/flutter_vibration
+
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -40,11 +43,11 @@ class Vibration {
   /// }
   /// ```
   static Future<void> vibrate(
-      {int duration = 500,
-        List<int> pattern = const [],
-        int repeat = -1,
-        List<int> intensities = const [],
-        int amplitude = -1}) =>
+          {int duration = 500,
+          List<int> pattern = const [],
+          int repeat = -1,
+          List<int> intensities = const [],
+          int amplitude = -1}) =>
       _channel.invokeMethod("vibrate", {
         "duration": duration,
         "pattern": pattern,

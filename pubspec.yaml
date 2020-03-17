@@ -1,7 +1,6 @@
 name: slider_button
 description: Customizable slider button widget for activating/deactivating some event.
-version: 0.4.0
-author: Flutter Glutter <FlutterGlutter@gmail.com>
+version: 0.5.0
 homepage: https://github.com/anirudhsharma392/Slider-Button
 
 environment:

@@ -1,3 +1,6 @@
+///This library is imported from
+///https://github.com/hnvn/flutter_shimmer
+
 library shimmer;
 
 import 'package:flutter/material.dart';
