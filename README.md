@@ -115,6 +115,7 @@ There are several options that allow for more control:
 | `shimmer` | true | enables/disables shimmer effect on the label |
 | `dismissible` | true | Make it false if you want maintain the widget in the tree |
 | `buttonSize` | 60 | Gives size to a button |
+| `dismissThresholds` | 1.0 | The offset threshold when it should be considered dismissed |
 
 <br>
 <br>
