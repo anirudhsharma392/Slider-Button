@@ -37,6 +37,11 @@ class SliderButton extends StatefulWidget {
 
   final bool vibrationFlag;
 
+  ///The offset threshold the item has to be dragged in order to be considered
+  ///dismissed e.g. if it is 0.4, then the item has to be dragged
+  /// at least 40% towards one direction to be considered dismissed
+  final double dismissThresholds;
+
   SliderButton({
     @required this.action,
     this.radius = 100,
@@ -66,6 +71,7 @@ class SliderButton extends StatefulWidget {
       semanticLabel: 'Text to announce in accessibility modes',
     ),
     this.dismissible = true,
+    this.dismissThresholds = 1.0,
   }) : assert(buttonSize <= height);
 
   @override
@@ -115,6 +121,7 @@ class _SliderButtonState extends State<SliderButton> {
             Dismissible(
               key: Key("cancel"),
               direction: DismissDirection.startToEnd,
+              dismissThresholds: {DismissDirection.startToEnd: widget.dismissThresholds},
 
               ///gives direction of swipping in argument.
               onDismissed: (dir) async {
