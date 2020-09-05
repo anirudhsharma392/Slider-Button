@@ -125,6 +125,7 @@ class _SliderButtonState extends State<SliderButton> {
                     flag = !flag;
                   }
                 });
+                widget.action();
                 if (widget.vibrationFlag && await Vibration.hasVibrator()) {
                   try {
                     Vibration.vibrate(duration: 200);
@@ -132,8 +133,6 @@ class _SliderButtonState extends State<SliderButton> {
                     print(e);
                   }
                 }
-
-                widget.action();
               },
               child: Container(
                 width: widget.width - (widget.height),
