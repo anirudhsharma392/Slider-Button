@@ -2,6 +2,10 @@
 add a gradient to the button.
 add a spring effect on tapping a handler of a button
 
+## [0.6.0] : 06/09/20.
+
+* Fixed No implementation found for method channel vibration
+
 ## [0.5.0] : 09/03/20.
 
 * added option to add your own button as a child widget for more customization 

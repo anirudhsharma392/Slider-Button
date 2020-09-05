@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:slider_button/src/vibration.dart';
-
+import 'package:vibration/vibration.dart';
 import 'shimmer.dart';
 
 class SliderButton extends StatefulWidget {
