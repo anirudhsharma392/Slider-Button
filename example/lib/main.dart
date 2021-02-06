@@ -18,6 +18,7 @@ class MainApp extends StatelessWidget {
             child: SliderButton(
       action: () {
         ///Do something here OnSlide
+        print("working");
       },
 
       ///Put label over here
