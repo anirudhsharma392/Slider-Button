@@ -101,20 +101,20 @@ There are several options that allow for more control:
 |--------------|-----------------|--------------|
 | `action` | null | (required) Define an action after slidding a button |
 | `child` | null | For more customizable button add your own widget |
-| `vibrationFlag` | true | controls vibration on successful dismissed |
-| `height` | 60 | Gives a height to a widget |
-| `width` | 240 | Gives a width to a widget |
+| `vibrationFlag` | false | controls vibration on successful dismissed |
+| `height` | null ?? 70 | Gives a height to a widget |
+| `width` | null ?? 250 | Gives a width to a widget |
 | `backgroundColor` | Color(0xffececec) | Gives a background color to a widget |
 | `baseColor` | Color(0xff4a4a4a) | Gives a shimmer base color to a widget |
 | `highlightedColor` | Colors.white | Gives a shimmer highlighted color  to a widget |
 | `buttonColor` | Colors.black | Gives a color to a slidder button |
-| `label` | Text("Slide to cancel !", style: TextStyle( fontSize: 17),) | A text widget which assigns a label. |
+| `label` | null | A text widget which assigns a label. |
 | `alignLabel` | Alignment(0.4, 0) | Aligns text label |
-| `boxShadow` | BoxShadow(color: Colors.black,blurRadius: 4,) | Gives a shadow to a slidder button |
-| `icon` | Center( child: Icon( Icons.power_settings_new,color: Colors.white,size: 40.0,)) | A widget to provide an icon to a button |
-| `shimmer` | true | enables/disables shimmer effect on the label |
+| `boxShadow` | null | Gives a shadow to a slidder button |
+| `icon` | null | A widget to provide an icon to a button |
+| `shimmer` | false | enables/disables shimmer effect on the label |
 | `dismissible` | true | Make it false if you want maintain the widget in the tree |
-| `buttonSize` | 60 | Gives size to a button |
+| `buttonSize` | null ?? 60 | Gives size to a button |
 | `dismissThresholds` | 1.0 | The offset threshold when it should be considered dismissed |
 
 <br>

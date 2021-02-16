@@ -20,7 +20,6 @@ class MainApp extends StatelessWidget {
         ///Do something here OnSlide
         print("working");
       },
-
       ///Put label over here
       label: Text(
         "Slide to cancel !",
@@ -36,6 +35,16 @@ class MainApp extends StatelessWidget {
         size: 40.0,
         semanticLabel: 'Text to announce in accessibility modes',
       )),
+
+      //Put BoxShadow here
+      boxShadow: BoxShadow(
+        color: Colors.black,
+        blurRadius: 4,
+      ),
+
+      //Adjust effects such as shimmer and flag vibration here
+      // shimmer: true,
+      // vibrationFlag: true,
 
       ///Change All the color and size from here.
       width: 230,
