@@ -121,21 +121,31 @@ class _SliderButtonState extends State<SliderButton> {
                       height: (widget.height - 70),
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.only(
-                        left: widget.height == null ? 
-                        (70 - (widget.buttonSize == null ? 60 : widget.buttonSize)) / 2 : 
-                        (widget.height - (widget.buttonSize == null ? widget.height * 0.9 : widget.buttonSize)) / 2,
+                        left: widget.height == null
+                            ? (70 -
+                                    (widget.buttonSize == null
+                                        ? 60
+                                        : widget.buttonSize)) /
+                                2
+                            : (widget.height -
+                                    (widget.buttonSize == null
+                                        ? widget.height * 0.9
+                                        : widget.buttonSize)) /
+                                2,
                       ),
                       child: widget.child ??
                           Container(
-                            height: widget.buttonSize ?? widget.height ?? 70 * 0.9,
-                            width: widget.buttonSize ?? widget.height ?? 70 * 0.9,
+                            height:
+                                widget.buttonSize ?? widget.height ?? 70 * 0.9,
+                            width:
+                                widget.buttonSize ?? widget.height ?? 70 * 0.9,
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   widget.boxShadow,
                                 ],
                                 color: Colors.grey,
-                                borderRadius:
-                                    BorderRadius.circular(widget.radius ?? 100)),
+                                borderRadius: BorderRadius.circular(
+                                    widget.radius ?? 100)),
                             child: Center(child: widget.icon),
                           ),
                     ),
@@ -158,8 +168,8 @@ class _SliderButtonState extends State<SliderButton> {
                       });
 
                       widget.action();
-                      if (widget.vibrationFlag ?? true &&
-                          await Vibration.hasVibrator()) {
+                      if (widget.vibrationFlag ??
+                          true && await Vibration.hasVibrator()) {
                         try {
                           Vibration.vibrate(duration: 200);
                         } catch (e) {
@@ -172,21 +182,31 @@ class _SliderButtonState extends State<SliderButton> {
                       height: widget.height ?? 70,
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.only(
-                        left: widget.height == null ? 
-                        (70 - (widget.buttonSize == null ? 60 : widget.buttonSize)) / 2 : 
-                        (widget.height - (widget.buttonSize == null ? widget.height * 0.9 : widget.buttonSize)) / 2,
+                        left: widget.height == null
+                            ? (70 -
+                                    (widget.buttonSize == null
+                                        ? 60
+                                        : widget.buttonSize)) /
+                                2
+                            : (widget.height -
+                                    (widget.buttonSize == null
+                                        ? widget.height * 0.9
+                                        : widget.buttonSize)) /
+                                2,
                       ),
                       child: widget.child ??
                           Container(
-                            height: widget.buttonSize ?? widget.height ?? 70 * 0.9,
-                            width: widget.buttonSize ?? widget.height ?? 70 * 0.9,
+                            height:
+                                widget.buttonSize ?? widget.height ?? 70 * 0.9,
+                            width:
+                                widget.buttonSize ?? widget.height ?? 70 * 0.9,
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   widget.boxShadow,
                                 ],
                                 color: widget.buttonColor,
-                                borderRadius:
-                                    BorderRadius.circular(widget.radius ?? 100)),
+                                borderRadius: BorderRadius.circular(
+                                    widget.radius ?? 100)),
                             child: Center(child: widget.icon),
                           ),
                     ),

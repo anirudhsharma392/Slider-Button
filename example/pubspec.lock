@@ -111,7 +111,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.6.0"
+    version: "1.0.0"
   source_span:
     dependency: transitive
     description:
@@ -174,14 +174,14 @@ packages:
       name: vibration
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.3"
+    version: "1.7.4-nullsafety.0"
   vibration_web:
     dependency: transitive
     description:
       name: vibration_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.2"
+    version: "1.6.3-nullsafety.0"
 sdks:
   dart: ">=2.12.0-0.0 <3.0.0"
   flutter: ">=1.20.0"

@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  vibration: ^1.7.4-nullsafety.0
+  vibration: ^1.7.3
   flutter:
     sdk: flutter
 
