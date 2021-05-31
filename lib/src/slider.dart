@@ -24,7 +24,7 @@ class SliderButton extends StatefulWidget {
   ///Change it to gave a label on a widget of your choice.
   final Text label;
 
-  ///Gives a alignment to a slidder icon.
+  ///Gives a alignment to a slider icon.
   final Alignment alignLabel;
   final BoxShadow boxShadow;
   final Widget icon;
