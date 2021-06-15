@@ -1,19 +1,19 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
-
 import 'shimmer.dart';
 
 class SliderButton extends StatefulWidget {
   ///To make button more customizable add your child widget
-  final Widget child;
+  final Widget? child;
 
   ///Sets the radius of corners of a button.
-  final double radius;
+  final double? radius;
 
   ///Use it to define a height and width of widget.
-  final double height;
-  final double width;
-  final double buttonSize;
+  final double? height;
+  final double? width;
+  final double? buttonSize;
 
   ///Use it to define a color of widget.
   final Color backgroundColor;
@@ -22,21 +22,21 @@ class SliderButton extends StatefulWidget {
   final Color buttonColor;
 
   ///Change it to gave a label on a widget of your choice.
-  final Text label;
+  final Text? label;
 
   ///Gives a alignment to a slider icon.
   final Alignment alignLabel;
-  final BoxShadow boxShadow;
-  final Widget icon;
+  final BoxShadow? boxShadow;
+  final Widget? icon;
   final Function action;
 
   ///Make it false if you want to deactivate the shimmer effect.
-  final bool shimmer;
+  final bool? shimmer;
 
   ///Make it false if you want maintain the widget in the tree.
   final bool dismissible;
 
-  final bool vibrationFlag;
+  final bool? vibrationFlag;
 
   ///The offset threshold the item has to be dragged in order to be considered
   ///dismissed e.g. if it is 0.4, then the item has to be dragged
@@ -45,7 +45,7 @@ class SliderButton extends StatefulWidget {
 
   final bool disable;
   SliderButton({
-    @required this.action,
+    required this.action,
     this.radius,
     this.boxShadow,
     this.child,
@@ -71,7 +71,7 @@ class SliderButton extends StatefulWidget {
 }
 
 class _SliderButtonState extends State<SliderButton> {
-  bool flag;
+  late bool flag;
 
   @override
   void initState() {
@@ -118,19 +118,19 @@ class _SliderButtonState extends State<SliderButton> {
                     message: 'Button is disabled',
                     child: Container(
                       width: (widget.width ?? 250) - (widget.height ?? 70),
-                      height: (widget.height - 70),
+                      height: (widget.height! - 70),
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.only(
                         left: widget.height == null
                             ? (70 -
                                     (widget.buttonSize == null
                                         ? 60
-                                        : widget.buttonSize)) /
+                                        : widget.buttonSize!)) /
                                 2
-                            : (widget.height -
+                            : (widget.height! -
                                     (widget.buttonSize == null
-                                        ? widget.height * 0.9
-                                        : widget.buttonSize)) /
+                                        ? widget.height! * 0.9
+                                        : widget.buttonSize!)) /
                                 2,
                       ),
                       child: widget.child ??
@@ -140,9 +140,9 @@ class _SliderButtonState extends State<SliderButton> {
                             width:
                                 widget.buttonSize ?? widget.height ?? 70 * 0.9,
                             decoration: BoxDecoration(
-                                boxShadow: [
-                                  widget.boxShadow,
-                                ],
+                                boxShadow: widget.boxShadow != null
+                                    ? [widget.boxShadow!]
+                                    : [],
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(
                                     widget.radius ?? 100)),
@@ -169,7 +169,9 @@ class _SliderButtonState extends State<SliderButton> {
 
                       widget.action();
                       if (widget.vibrationFlag ??
-                          true && await Vibration.hasVibrator()) {
+                          true &&
+                              await (Vibration.hasVibrator()
+                                  as FutureOr<bool>)) {
                         try {
                           Vibration.vibrate(duration: 200);
                         } catch (e) {
@@ -186,12 +188,12 @@ class _SliderButtonState extends State<SliderButton> {
                             ? (70 -
                                     (widget.buttonSize == null
                                         ? 60
-                                        : widget.buttonSize)) /
+                                        : widget.buttonSize!)) /
                                 2
-                            : (widget.height -
+                            : (widget.height! -
                                     (widget.buttonSize == null
-                                        ? widget.height * 0.9
-                                        : widget.buttonSize)) /
+                                        ? widget.height! * 0.9
+                                        : widget.buttonSize!)) /
                                 2,
                       ),
                       child: widget.child ??
@@ -201,9 +203,9 @@ class _SliderButtonState extends State<SliderButton> {
                             width:
                                 widget.buttonSize ?? widget.height ?? 70 * 0.9,
                             decoration: BoxDecoration(
-                                boxShadow: [
-                                  widget.boxShadow,
-                                ],
+                                boxShadow: widget.boxShadow != null
+                                    ? [widget.boxShadow!]
+                                    : [],
                                 color: widget.buttonColor,
                                 borderRadius: BorderRadius.circular(
                                     widget.radius ?? 100)),
