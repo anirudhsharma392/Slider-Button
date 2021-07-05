@@ -4,10 +4,10 @@ version: 1.0.0
 homepage: https://github.com/anirudhsharma392/Slider-Button
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  vibration: ^1.7.3
+  vibration: ^1.7.4-nullsafety.0
   flutter:
     sdk: flutter
 
