@@ -159,6 +159,8 @@ class _SliderButtonState extends State<SliderButton> {
 
                     ///gives direction of swipping in argument.
                     onDismissed: (dir) async {
+                      final hasVibration =
+                          await Vibration.hasVibrator() ?? false;
                       setState(() {
                         if (widget.dismissible) {
                           flag = false;
@@ -168,10 +170,7 @@ class _SliderButtonState extends State<SliderButton> {
                       });
 
                       widget.action();
-                      if (widget.vibrationFlag ??
-                          true &&
-                              await (Vibration.hasVibrator()
-                                  as FutureOr<bool>)) {
+                      if (widget.vibrationFlag ?? true && hasVibration) {
                         try {
                           Vibration.vibrate(duration: 200);
                         } catch (e) {
