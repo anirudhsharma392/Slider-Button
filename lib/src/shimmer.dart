@@ -48,9 +48,9 @@ class Shimmer extends StatefulWidget {
   final int loop;
 
   Shimmer({
-    Key key,
-    @required this.child,
-    @required this.gradient,
+    Key? key,
+    required this.child,
+    required this.gradient,
     this.direction = ShimmerDirection.ltr,
     this.period = const Duration(milliseconds: 1500),
     this.loop = 0,
@@ -62,30 +62,15 @@ class Shimmer extends StatefulWidget {
   /// `highlightColor`.
   ///
   Shimmer.fromColors(
-      {Key key,
-      @required this.child,
-      @required Color baseColor,
-      @required Color highlightColor,
+      {Key? key,
+      required this.child,
+      required Color baseColor,
+      required Color highlightColor,
       this.period = const Duration(milliseconds: 1500),
       this.direction = ShimmerDirection.ltr,
       this.loop = 0})
       : gradient = LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.centerRight,
-            colors: [
-              baseColor,
-              baseColor,
-              highlightColor,
-              baseColor,
-              baseColor
-            ],
-            stops: [
-              0.0,
-              0.35,
-              0.5,
-              0.65,
-              1.0
-            ]),
+            begin: Alignment.topLeft, end: Alignment.centerRight, colors: [baseColor, baseColor, highlightColor, baseColor, baseColor], stops: [0.0, 0.35, 0.5, 0.65, 1.0]),
         super(key: key);
 
   @override
@@ -94,22 +79,19 @@ class Shimmer extends StatefulWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(new DiagnosticsProperty<Gradient>('gradient', gradient,
-        defaultValue: null));
+    properties.add(new DiagnosticsProperty<Gradient>('gradient', gradient, defaultValue: null));
     properties.add(new EnumProperty<ShimmerDirection>('direction', direction));
-    properties.add(new DiagnosticsProperty<Duration>('period', period,
-        defaultValue: null));
+    properties.add(new DiagnosticsProperty<Duration>('period', period, defaultValue: null));
   }
 }
 
 class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  int _count;
+  late AnimationController _controller;
+  int _count = 0;
 
   @override
   void initState() {
     super.initState();
-    _count = 0;
     _controller = AnimationController(vsync: this, duration: widget.period)
       ..addListener(() {
         setState(() {});
@@ -149,8 +131,7 @@ class _Shimmer extends SingleChildRenderObjectWidget {
   final ShimmerDirection direction;
   final Gradient gradient;
 
-  _Shimmer({Widget child, this.percent, this.direction, this.gradient})
-      : super(child: child);
+  _Shimmer({required Widget child, required this.percent, required this.direction, required this.gradient}) : super(child: child);
 
   @override
   _ShimmerFilter createRenderObject(BuildContext context) {
@@ -169,10 +150,9 @@ class _ShimmerFilter extends RenderProxyBox {
   final Gradient _gradient;
   final ShimmerDirection _direction;
   double _percent;
-  Rect _rect;
+  late Rect _rect;
 
-  _ShimmerFilter(this._percent, this._direction, this._gradient)
-      : _gradientPaint = Paint()..blendMode = BlendMode.srcIn;
+  _ShimmerFilter(this._percent, this._direction, this._gradient) : _gradientPaint = Paint()..blendMode = BlendMode.srcIn;
 
   @override
   bool get alwaysNeedsCompositing => child != null;
@@ -189,8 +169,8 @@ class _ShimmerFilter extends RenderProxyBox {
     if (child != null) {
       assert(needsCompositing);
 
-      final width = child.size.width;
-      final height = child.size.height;
+      final width = child!.size.width;
+      final height = child!.size.height;
       Rect rect;
       double dx, dy;
       if (_direction == ShimmerDirection.rtl) {
@@ -215,8 +195,8 @@ class _ShimmerFilter extends RenderProxyBox {
         _rect = rect;
       }
 
-      context.canvas.saveLayer(offset & child.size, _clearPaint);
-      context.paintChild(child, offset);
+      context.canvas.saveLayer(offset & child!.size, _clearPaint);
+      context.paintChild(child!, offset);
       context.canvas.translate(dx, dy);
       context.canvas.drawRect(rect, _gradientPaint);
       context.canvas.restore();

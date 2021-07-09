@@ -5,15 +5,15 @@ import 'shimmer.dart';
 
 class SliderButton extends StatefulWidget {
   ///To make button more customizable add your child widget
-  final Widget child;
+  final Widget? child;
 
   ///Sets the radius of corners of a button.
-  final double radius;
+  final double? radius;
 
   ///Use it to define a height and width of widget.
   final double height;
   final double width;
-  final double buttonSize;
+  final double? buttonSize;
 
   ///Use it to define a color of widget.
   final Color backgroundColor;
@@ -22,13 +22,13 @@ class SliderButton extends StatefulWidget {
   final Color buttonColor;
 
   ///Change it to gave a label on a widget of your choice.
-  final Text label;
+  final Text? label;
 
   ///Gives a alignment to a slider icon.
   final Alignment alignLabel;
-  final BoxShadow boxShadow;
-  final Widget icon;
-  final Function action;
+  final BoxShadow? boxShadow;
+  final Widget? icon;
+  final Function? action;
 
   ///Make it false if you want to deactivate the shimmer effect.
   final bool shimmer;
@@ -44,16 +44,17 @@ class SliderButton extends StatefulWidget {
   final double dismissThresholds;
 
   final bool disable;
+
   SliderButton({
-    @required this.action,
+    required this.action,
     this.radius,
     this.boxShadow,
     this.child,
-    this.vibrationFlag,
-    this.shimmer,
-    this.height,
+    this.vibrationFlag = false,
+    this.shimmer = true,
+    this.height = 70,
     this.buttonSize,
-    this.width,
+    this.width = 250,
     this.alignLabel = const Alignment(0.4, 0),
     this.backgroundColor = const Color(0xffe0e0e0),
     this.baseColor = Colors.black87,
@@ -64,14 +65,14 @@ class SliderButton extends StatefulWidget {
     this.dismissible = true,
     this.dismissThresholds = 1.0,
     this.disable = false,
-  }) : assert((buttonSize ?? 60) <= (height ?? 70));
+  }) : assert((buttonSize ?? 60) <= (height));
 
   @override
   _SliderButtonState createState() => _SliderButtonState();
 }
 
 class _SliderButtonState extends State<SliderButton> {
-  bool flag;
+  late bool flag;
 
   @override
   void initState() {
@@ -91,24 +92,20 @@ class _SliderButtonState extends State<SliderButton> {
   }
 
   Widget _control() => Container(
-        height: widget.height ?? 70,
-        width: widget.width ?? 250,
-        decoration: BoxDecoration(
-            color:
-                widget.disable ? Colors.grey.shade700 : widget.backgroundColor,
-            borderRadius: BorderRadius.circular(widget.radius ?? 100)),
+        height: widget.height,
+        width: widget.width,
+        decoration: BoxDecoration(color: widget.disable ? Colors.grey.shade700 : widget.backgroundColor, borderRadius: BorderRadius.circular(widget.radius ?? 100)),
         alignment: Alignment.centerLeft,
         child: Stack(
           alignment: Alignment.centerLeft,
           children: <Widget>[
             Container(
               alignment: widget.alignLabel,
-              child: widget.shimmer ?? true && !widget.disable
+              child: widget.shimmer && !widget.disable
                   ? Shimmer.fromColors(
-                      baseColor:
-                          widget.disable ? Colors.grey : widget.baseColor,
+                      baseColor: widget.disable ? Colors.grey : widget.baseColor,
                       highlightColor: widget.highlightedColor,
-                      child: widget.label,
+                      child: widget.label ?? Text(''),
                     )
                   : widget.label,
             ),
@@ -117,35 +114,24 @@ class _SliderButtonState extends State<SliderButton> {
                     verticalOffset: 50,
                     message: 'Button is disabled',
                     child: Container(
-                      width: (widget.width ?? 250) - (widget.height ?? 70),
+                      width: (widget.width) - (widget.height),
                       height: (widget.height - 70),
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.only(
-                        left: widget.height == null
-                            ? (70 -
-                                    (widget.buttonSize == null
-                                        ? 60
-                                        : widget.buttonSize)) /
-                                2
-                            : (widget.height -
-                                    (widget.buttonSize == null
-                                        ? widget.height * 0.9
-                                        : widget.buttonSize)) /
-                                2,
+                        left: (widget.height - (widget.buttonSize == null ? widget.height * 0.9 : widget.buttonSize)!) / 2,
                       ),
                       child: widget.child ??
                           Container(
-                            height:
-                                widget.buttonSize ?? widget.height ?? 70 * 0.9,
-                            width:
-                                widget.buttonSize ?? widget.height ?? 70 * 0.9,
+                            height: widget.buttonSize ?? widget.height,
+                            width: widget.buttonSize ?? widget.height,
                             decoration: BoxDecoration(
-                                boxShadow: [
-                                  widget.boxShadow,
-                                ],
+                                boxShadow: widget.boxShadow != null
+                                    ? [
+                                        widget.boxShadow!,
+                                      ]
+                                    : null,
                                 color: Colors.grey,
-                                borderRadius: BorderRadius.circular(
-                                    widget.radius ?? 100)),
+                                borderRadius: BorderRadius.circular(widget.radius ?? 100)),
                             child: Center(child: widget.icon),
                           ),
                     ),
@@ -153,9 +139,7 @@ class _SliderButtonState extends State<SliderButton> {
                 : Dismissible(
                     key: Key("cancel"),
                     direction: DismissDirection.startToEnd,
-                    dismissThresholds: {
-                      DismissDirection.startToEnd: widget.dismissThresholds
-                    },
+                    dismissThresholds: {DismissDirection.startToEnd: widget.dismissThresholds},
 
                     ///gives direction of swipping in argument.
                     onDismissed: (dir) async {
@@ -167,9 +151,9 @@ class _SliderButtonState extends State<SliderButton> {
                         }
                       });
 
-                      widget.action();
-                      if (widget.vibrationFlag ??
-                          true && await Vibration.hasVibrator()) {
+                      widget.action?.call();
+                      final hasVibrator = await Vibration.hasVibrator() ?? false;
+                      if (widget.vibrationFlag && hasVibrator) {
                         try {
                           Vibration.vibrate(duration: 200);
                         } catch (e) {
@@ -178,35 +162,24 @@ class _SliderButtonState extends State<SliderButton> {
                       }
                     },
                     child: Container(
-                      width: (widget.width ?? 250) - (widget.height ?? 70),
-                      height: widget.height ?? 70,
+                      width: widget.width - widget.height,
+                      height: widget.height,
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.only(
-                        left: widget.height == null
-                            ? (70 -
-                                    (widget.buttonSize == null
-                                        ? 60
-                                        : widget.buttonSize)) /
-                                2
-                            : (widget.height -
-                                    (widget.buttonSize == null
-                                        ? widget.height * 0.9
-                                        : widget.buttonSize)) /
-                                2,
+                        left: (widget.height - (widget.buttonSize == null ? widget.height * 0.9 : widget.buttonSize!)) / 2,
                       ),
                       child: widget.child ??
                           Container(
-                            height:
-                                widget.buttonSize ?? widget.height ?? 70 * 0.9,
-                            width:
-                                widget.buttonSize ?? widget.height ?? 70 * 0.9,
+                            height: widget.buttonSize ?? widget.height,
+                            width: widget.buttonSize ?? widget.height,
                             decoration: BoxDecoration(
-                                boxShadow: [
-                                  widget.boxShadow,
-                                ],
+                                boxShadow: widget.boxShadow != null
+                                    ? [
+                                        widget.boxShadow!,
+                                      ]
+                                    : null,
                                 color: widget.buttonColor,
-                                borderRadius: BorderRadius.circular(
-                                    widget.radius ?? 100)),
+                                borderRadius: BorderRadius.circular(widget.radius ?? 100)),
                             child: Center(child: widget.icon),
                           ),
                     ),
