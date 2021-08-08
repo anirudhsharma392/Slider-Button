@@ -15,44 +15,54 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-            child: SliderButton(
-      action: () {
-        ///Do something here OnSlide
-        print("working");
-      },
-      ///Put label over here
-      label: Text(
-        "Slide to cancel !",
-        style: TextStyle(
+            child: Container(
+      color: Colors.amberAccent,
+      child: SliderButton(
+        value: false,
+        action: (state) {
+          ///Do something here OnSlide
+          print("working");
+          print(state);
+        },
+        disable: false,
+        dismissible: false,
+
+        ///Put label over here
+        label: Text(
+          "Slide to cancel !",
+          style: TextStyle(
             color: Color(0xff4a4a4a),
             fontWeight: FontWeight.w500,
-            fontSize: 17),
+            fontSize: 17,
+          ),
+        ),
+        shimmer: true,
+        icon: Center(
+            child: Icon(
+          Icons.power_settings_new,
+          color: Colors.white,
+          size: 40.0,
+          semanticLabel: 'Text to announce in accessibility modes',
+        )),
+
+        //Put BoxShadow here
+        boxShadow: BoxShadow(
+          color: Colors.black,
+          blurRadius: 4,
+        ),
+
+        //Adjust effects such as shimmer and flag vibration here
+        // shimmer: true,
+        vibrationFlag: true,
+
+        ///Change All the color and size from here.
+        width: 230,
+        radius: 10,
+        buttonColor: Color(0xffd60000),
+        backgroundColor: Color(0xff534bae),
+        highlightedColor: Colors.white,
+        baseColor: Colors.red,
       ),
-      icon: Center(
-          child: Icon(
-        Icons.power_settings_new,
-        color: Colors.white,
-        size: 40.0,
-        semanticLabel: 'Text to announce in accessibility modes',
-      )),
-
-      //Put BoxShadow here
-      boxShadow: BoxShadow(
-        color: Colors.black,
-        blurRadius: 4,
-      ),
-
-      //Adjust effects such as shimmer and flag vibration here
-      // shimmer: true,
-      // vibrationFlag: true,
-
-      ///Change All the color and size from here.
-      width: 230,
-      radius: 10,
-      buttonColor: Color(0xffd60000),
-      backgroundColor: Color(0xff534bae),
-      highlightedColor: Colors.white,
-      baseColor: Colors.red,
     )));
   }
 }
