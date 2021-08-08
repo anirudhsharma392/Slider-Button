@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
     return Scaffold(
         body: Center(
             child: Container(
-      color: Colors.amberAccent,
+      // color: Colors.amberAccent,
       child: SliderButton(
         value: false,
         action: (state) {
@@ -28,22 +28,27 @@ class MainApp extends StatelessWidget {
         dismissible: false,
 
         ///Put label over here
-        label: Text(
-          "Slide to cancel !",
-          style: TextStyle(
-            color: Color(0xff4a4a4a),
-            fontWeight: FontWeight.w500,
-            fontSize: 17,
-          ),
-        ),
+        // label: Text(
+        //   "Slide to cancel !",
+        //   style: TextStyle(
+        //     color: Color(0xff4a4a4a),
+        //     fontWeight: FontWeight.w500,
+        //     fontSize: 17,
+        //   ),
+        // ),
         shimmer: true,
-        icon: Center(
-            child: Icon(
+        onIcon: Icon(
           Icons.power_settings_new,
           color: Colors.white,
           size: 40.0,
           semanticLabel: 'Text to announce in accessibility modes',
-        )),
+        ),
+        offIcon: Icon(
+          Icons.ac_unit,
+          color: Colors.white,
+          size: 40.0,
+          semanticLabel: 'Text to announce in accessibility modes',
+        ),
 
         //Put BoxShadow here
         boxShadow: BoxShadow(
@@ -57,11 +62,15 @@ class MainApp extends StatelessWidget {
 
         ///Change All the color and size from here.
         width: 230,
-        radius: 10,
-        buttonColor: Color(0xffd60000),
-        backgroundColor: Color(0xff534bae),
-        highlightedColor: Colors.white,
-        baseColor: Colors.red,
+        radius: 50,
+        onButtonColor: Colors.orange.shade800,
+        offButtonColor: Colors.grey.shade500,
+        offBackgroundColor: Colors.grey.shade300,
+        onBackgroundColor: Colors.orange.shade500,
+        onHighlightedColor: Colors.white,
+        offHighlightedColor: Colors.white,
+        onBaseColor: Colors.black,
+        offBaseColor: Colors.black54,
       ),
     )));
   }

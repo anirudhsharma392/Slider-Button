@@ -17,18 +17,27 @@ class SliderButton extends StatefulWidget {
   final double buttonSize;
 
   ///Use it to define a color of widget.
-  final Color backgroundColor;
-  final Color baseColor;
-  final Color highlightedColor;
-  final Color buttonColor;
+  final Color onBackgroundColor;
+  final Color offBackgroundColor;
+  final Color onBaseColor;
+  final Color offBaseColor;
+  final Color onHighlightedColor;
+  final Color offHighlightedColor;
+  final Color onButtonColor;
+  final Color offButtonColor;
 
   ///Change it to gave a label on a widget of your choice.
-  final Text? label;
+  final Text? onlabel, offlabel;
+  TextStyle _textStyle = TextStyle(
+    color: Color(0xff4a4a4a),
+    fontWeight: FontWeight.w500,
+    fontSize: 17,
+  );
 
   ///Gives a alignment to a slider icon.
   final Alignment alignLabel;
   final BoxShadow? boxShadow;
-  final Widget? icon;
+  final Widget? offIcon, onIcon;
   final Function action;
 
   ///Make it false if you want to deactivate the shimmer effect.
@@ -61,12 +70,28 @@ class SliderButton extends StatefulWidget {
     this.buttonSize = 60,
     this.width = 250,
     this.alignLabel = const Alignment(0.4, 0),
-    this.backgroundColor = const Color(0xffe0e0e0),
-    this.baseColor = Colors.black87,
-    this.buttonColor = Colors.white,
-    this.highlightedColor = Colors.white,
-    this.label,
-    this.icon,
+    this.onBackgroundColor = Colors.greenAccent,
+    this.offBackgroundColor = const Color(0xffe0e0e0),
+    this.onBaseColor = Colors.black87,
+    this.offBaseColor = Colors.black54,
+    this.onButtonColor = Colors.green,
+    this.offButtonColor = Colors.grey,
+    this.onHighlightedColor = Colors.white,
+    this.offHighlightedColor = Colors.white,
+    this.onlabel = const Text('Slide On',
+        style: TextStyle(
+          color: Color(0xff4a4a4a),
+          fontWeight: FontWeight.w500,
+          fontSize: 17,
+        )),
+    this.offlabel = const Text('Slide Off',
+        style: TextStyle(
+          color: Color(0xff4a4a4a),
+          fontWeight: FontWeight.w500,
+          fontSize: 17,
+        )),
+    this.offIcon,
+    this.onIcon,
     this.dismissible = true,
     this.dismissThresholds = 1.0,
     this.disable = false,
@@ -114,7 +139,11 @@ class _SliderButtonState extends State<SliderButton> {
       height: widget.height,
       width: widget.width,
       decoration: BoxDecoration(
-        color: widget.disable ? Colors.grey.shade700 : widget.backgroundColor,
+        color: widget.disable
+            ? Colors.grey.shade700
+            : state
+                ? widget.onBackgroundColor
+                : widget.offBackgroundColor,
         borderRadius: BorderRadius.circular(widget.radius),
       ),
       alignment: Alignment.centerLeft,
@@ -126,13 +155,21 @@ class _SliderButtonState extends State<SliderButton> {
                 state ? Alignment(-widget.alignLabel.x, 0) : widget.alignLabel,
             child: widget.shimmer && !widget.disable
                 ? Shimmer.fromColors(
-                    baseColor: widget.disable ? Colors.grey : widget.baseColor,
-                    highlightColor: widget.highlightedColor,
-                    child: widget.label!,
+                    baseColor: widget.disable
+                        ? Colors.grey
+                        : state
+                            ? widget.onBaseColor
+                            : widget.offBaseColor,
+                    highlightColor: state
+                        ? widget.onHighlightedColor
+                        : widget.offHighlightedColor,
+                    child: state ? widget.offlabel! : widget.onlabel!,
                     direction:
                         state ? ShimmerDirection.rtl : ShimmerDirection.ltr,
                   )
-                : widget.label!,
+                : state
+                    ? widget.offlabel!
+                    : widget.onlabel!,
           ),
           widget.disable
               ? Tooltip(
@@ -156,7 +193,7 @@ class _SliderButtonState extends State<SliderButton> {
                               color: Colors.grey,
                               borderRadius:
                                   BorderRadius.circular(widget.radius)),
-                          child: Center(child: widget.icon),
+                          child: Center(child: widget.offIcon),
                         ),
                   ),
                 )
@@ -198,10 +235,13 @@ class _SliderButtonState extends State<SliderButton> {
                               boxShadow: [
                                 widget.boxShadow!,
                               ],
-                              color: widget.buttonColor,
+                              color: state
+                                  ? widget.onButtonColor
+                                  : widget.offButtonColor,
                               borderRadius:
                                   BorderRadius.circular(widget.radius)),
-                          child: Center(child: widget.icon),
+                          child: Center(
+                              child: state ? widget.offIcon : widget.onIcon),
                         ),
                   ),
                 ),
