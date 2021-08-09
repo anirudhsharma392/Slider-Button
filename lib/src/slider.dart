@@ -264,11 +264,11 @@ class _SliderButtonState extends State<SliderButton> {
         print(e);
       }
     }
+    widget.action(!state);
     setState(() {
       flag = !flag!;
       state = !state;
     });
-    widget.action(!state);
 
     return false;
   }
@@ -282,12 +282,12 @@ class _SliderButtonState extends State<SliderButton> {
         print(e);
       }
     }
+    //  Execute the actions callback
+    widget.action(!state);
     // set the state of the widget
     setState(() {
       flag = false;
       state = !state;
     });
-    //  Execute the actions callback
-    widget.action(!state);
   }
 }
