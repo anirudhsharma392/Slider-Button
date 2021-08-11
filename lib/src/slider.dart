@@ -28,7 +28,7 @@ class SliderButton extends StatefulWidget {
 
   ///Change it to gave a label on a widget of your choice.
   final Text? onlabel, offlabel;
-  TextStyle _textStyle = TextStyle(
+  final TextStyle _textStyle = TextStyle(
     color: Color(0xff4a4a4a),
     fontWeight: FontWeight.w500,
     fontSize: 17,
@@ -110,6 +110,13 @@ class _SliderButtonState extends State<SliderButton> {
   void initState() {
     super.initState();
     flag = true;
+    state = widget.value ? true : false;
+  }
+
+  @override
+  void didUpdateWidget(covariant SliderButton oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
     state = widget.value ? true : false;
   }
 
