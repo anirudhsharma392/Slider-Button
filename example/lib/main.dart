@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         body: Center(
             child: SliderButton(
@@ -43,8 +44,8 @@ class MainApp extends StatelessWidget {
       ),
 
       //Adjust effects such as shimmer and flag vibration here
-      // shimmer: true,
-      // vibrationFlag: true,
+      shimmer: true,
+      vibrationFlag: true,
 
       ///Change All the color and size from here.
       width: 230,

@@ -1,4 +1,4 @@
-# Slider Button
+# Slider Button v2.0.0
 ![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
 
 This package provides an easy implementation of a Slider Button to cancel current transaction or screen.
@@ -8,6 +8,8 @@ Highly customizable iphone alike looking widget.
     <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button_3.gif?raw=true"/>
 
 </p>
+
+### Null safety supported
 
 ## How to use
 ### Type 1
