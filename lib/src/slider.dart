@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
 import 'shimmer.dart';
@@ -62,7 +61,7 @@ class SliderButton extends StatefulWidget {
     this.label,
     this.icon,
     this.dismissible = true,
-    this.dismissThresholds = 1.0,
+    this.dismissThresholds = 0.9,
     this.disable = false,
   }) : assert((buttonSize ?? 60) <= (height ?? 70));
 
@@ -118,7 +117,7 @@ class _SliderButtonState extends State<SliderButton> {
                     message: 'Button is disabled',
                     child: Container(
                       width: (widget.width ?? 250) - (widget.height ?? 70),
-                      height: (widget.height! - 70),
+                      height: (widget.height ?? 300 - 70),
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.only(
                         left: widget.height == null
@@ -159,6 +158,7 @@ class _SliderButtonState extends State<SliderButton> {
 
                     ///gives direction of swipping in argument.
                     onDismissed: (dir) async {
+                      widget.action();
                       final hasVibration =
                           await Vibration.hasVibrator() ?? false;
                       setState(() {
@@ -169,7 +169,6 @@ class _SliderButtonState extends State<SliderButton> {
                         }
                       });
 
-                      widget.action();
                       if (widget.vibrationFlag ?? true && hasVibration) {
                         try {
                           Vibration.vibrate(duration: 200);
