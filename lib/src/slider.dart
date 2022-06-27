@@ -137,7 +137,7 @@ class _SliderButtonState extends State<SliderButton> {
                     ),
                   )
                 : Dismissible(
-                    key: Key("cancel"),
+                    key: UniqueKey(),
                     direction: DismissDirection.startToEnd,
                     dismissThresholds: {DismissDirection.startToEnd: widget.dismissThresholds},
 
