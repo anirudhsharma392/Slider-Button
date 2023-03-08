@@ -1,4 +1,4 @@
-package com.example.slider_button_example
+package com.example.example
 
 import io.flutter.embedding.android.FlutterActivity
 
