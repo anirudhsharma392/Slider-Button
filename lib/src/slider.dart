@@ -15,6 +15,9 @@ class SliderButton extends StatefulWidget {
   final double width;
   final double? buttonSize;
 
+  /// Use this parameter in case if your slider button is wide and not squared.
+  final double? buttonWidth;
+
   ///Use it to define a color of widget.
   final Color backgroundColor;
   final Color baseColor;
@@ -22,7 +25,7 @@ class SliderButton extends StatefulWidget {
   final Color buttonColor;
 
   ///Change it to gave a label on a widget of your choice.
-  final Text? label;
+  final Widget? label;
 
   ///Gives a alignment to a slider icon.
   final Alignment alignLabel;
@@ -54,6 +57,7 @@ class SliderButton extends StatefulWidget {
     this.shimmer = true,
     this.height = 70,
     this.buttonSize,
+    this.buttonWidth,
     this.width = 250,
     this.alignLabel = const Alignment(0.6, 0),
     this.backgroundColor = const Color(0xffe0e0e0),
@@ -162,7 +166,7 @@ class _SliderButtonState extends State<SliderButton> {
                       }
                     },
                     child: Container(
-                      width: widget.width - widget.height,
+                      width: widget.width - (widget.buttonWidth ?? widget.height),
                       height: widget.height,
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.only(
