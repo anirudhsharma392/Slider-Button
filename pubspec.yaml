@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   vibration: ^1.7.4-nullsafety
-  shimmer: ^2.0.0
+  shimmer: ^3.0.0
   flutter:
     sdk: flutter
 
