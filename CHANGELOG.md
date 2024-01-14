@@ -2,6 +2,11 @@
 add a gradient to the button.
 add a spring effect on tapping a handler of a button
 
+## [2.1.0] : 15/01/23.
+### Breaking Changes
+* Changed Function action => Future<bool> Function() action
+* Bug fixes
+
 ## [0.6.0] : 06/09/20.
 
 * Fixed No implementation found for method channel vibration

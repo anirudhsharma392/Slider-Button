@@ -1,4 +1,4 @@
-# Slider Button v2.0.0
+# Slider Button v2.1.0
 ![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
 
 This package provides an easy implementation of a Slider Button to cancel current transaction or screen.
@@ -28,10 +28,10 @@ import 'package:slider_button/slider_button.dart';
 
 ```dart
 Center(child: SliderButton(
-      action: () {
-        ///Do something here
-        Navigator.of(context).pop();
-      },
+      action: () async{
+    ///Do something here OnSlide
+    return true;
+        },
        label: Text(
           "Slide to cancel Event",
           style: TextStyle(
@@ -66,8 +66,9 @@ import 'package:slider_button/slider_button.dart';
 
 ```dart
 SliderButton(
-      action: () {
+      action: () async{
         ///Do something here OnSlide
+        return true; 
       },
 
       ///Put label over here
@@ -99,25 +100,25 @@ SliderButton(
 ## Custom Usage
 There are several options that allow for more control:
 
-|  Properties  |   Default   |   Description   |
-|--------------|-----------------|--------------|
-| `action` | null | (required) Define an action after slidding a button |
-| `child` | null | For more customizable button add your own widget |
-| `vibrationFlag` | false | controls vibration on successful dismissed |
-| `height` | null ?? 70 | Gives a height to a widget |
-| `width` | null ?? 250 | Gives a width to a widget |
-| `backgroundColor` | Color(0xffececec) | Gives a background color to a widget |
-| `baseColor` | Color(0xff4a4a4a) | Gives a shimmer base color to a widget |
-| `highlightedColor` | Colors.white | Gives a shimmer highlighted color  to a widget |
-| `buttonColor` | Colors.black | Gives a color to a slidder button |
-| `label` | null | A text widget which assigns a label. |
-| `alignLabel` | Alignment(0.4, 0) | Aligns text label |
-| `boxShadow` | null | Gives a shadow to a slidder button |
-| `icon` | null | A widget to provide an icon to a button |
-| `shimmer` | false | enables/disables shimmer effect on the label |
-| `dismissible` | true | Make it false if you want maintain the widget in the tree |
-| `buttonSize` | null ?? 60 | Gives size to a button |
-| `dismissThresholds` | 1.0 | The offset threshold when it should be considered dismissed |
+|  Properties  |   Default   | Description                                                            |
+|--------------|-----------------|------------------------------------------------------------------------|
+| `action` | null | (required) Define an action after slidding a button and return boolean |
+| `child` | null | For more customizable button add your own widget                       |
+| `vibrationFlag` | false | controls vibration on successful dismissed                             |
+| `height` | null ?? 70 | Gives a height to a widget                                             |
+| `width` | null ?? 250 | Gives a width to a widget                                              |
+| `backgroundColor` | Color(0xffececec) | Gives a background color to a widget                                   |
+| `baseColor` | Color(0xff4a4a4a) | Gives a shimmer base color to a widget                                 |
+| `highlightedColor` | Colors.white | Gives a shimmer highlighted color  to a widget                         |
+| `buttonColor` | Colors.black | Gives a color to a slidder button                                      |
+| `label` | null | A text widget which assigns a label.                                   |
+| `alignLabel` | Alignment(0.4, 0) | Aligns text label                                                      |
+| `boxShadow` | null | Gives a shadow to a slidder button                                     |
+| `icon` | null | A widget to provide an icon to a button                                |
+| `shimmer` | false | enables/disables shimmer effect on the label                           |
+| `dismissible` | true | Make it false if you want maintain the widget in the tree              |
+| `buttonSize` | null ?? 60 | Gives size to a button                                                 |
+| `dismissThresholds` | 1.0 | The offset threshold when it should be considered dismissed            |
 
 <br>
 <br>
