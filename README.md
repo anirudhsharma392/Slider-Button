@@ -1,4 +1,5 @@
 # Slider Button v2.1.0
+
 ![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
 
 This package provides an easy implementation of a Slider Button to cancel current transaction or screen.
@@ -12,7 +13,9 @@ Highly customizable iphone alike looking widget.
 ### Null safety supported
 
 ## How to use
+
 ### Type 1
+
 This is a Circle type widget.
 You just need to define the border radius to swap between rectangle and circle type widget.
 
@@ -30,7 +33,7 @@ import 'package:slider_button/slider_button.dart';
 Center(child: SliderButton(
       action: () async{
     ///Do something here OnSlide
-    return true;
+    return true; //return false if you want to avoid dismissing the widget in the tree. 
         },
        label: Text(
           "Slide to cancel Event",
@@ -50,6 +53,7 @@ Center(child: SliderButton(
     ));
 
 ```
+
 ### Type 2
 
 This is a Rectangle type widget.
@@ -68,7 +72,7 @@ import 'package:slider_button/slider_button.dart';
 SliderButton(
       action: () async{
         ///Do something here OnSlide
-        return true; 
+        return true; //return false if you want to avoid dismissing the widget in the tree. 
       },
 
       ///Put label over here
@@ -98,33 +102,33 @@ SliderButton(
 ```
 
 ## Custom Usage
+
 There are several options that allow for more control:
 
-|  Properties  |   Default   | Description                                                            |
-|--------------|-----------------|------------------------------------------------------------------------|
-| `action` | null | (required) Define an action after slidding a button and return boolean |
-| `child` | null | For more customizable button add your own widget                       |
-| `vibrationFlag` | false | controls vibration on successful dismissed                             |
-| `height` | null ?? 70 | Gives a height to a widget                                             |
-| `width` | null ?? 250 | Gives a width to a widget                                              |
-| `backgroundColor` | Color(0xffececec) | Gives a background color to a widget                                   |
-| `baseColor` | Color(0xff4a4a4a) | Gives a shimmer base color to a widget                                 |
-| `highlightedColor` | Colors.white | Gives a shimmer highlighted color  to a widget                         |
-| `buttonColor` | Colors.black | Gives a color to a slidder button                                      |
-| `label` | null | A text widget which assigns a label.                                   |
-| `alignLabel` | Alignment(0.4, 0) | Aligns text label                                                      |
-| `boxShadow` | null | Gives a shadow to a slidder button                                     |
-| `icon` | null | A widget to provide an icon to a button                                |
-| `shimmer` | false | enables/disables shimmer effect on the label                           |
-| `dismissible` | true | Make it false if you want maintain the widget in the tree              |
-| `buttonSize` | null ?? 60 | Gives size to a button                                                 |
-| `dismissThresholds` | 1.0 | The offset threshold when it should be considered dismissed            |
+| Properties            | Default           | Description                                                            |
+| --------------------- | ----------------- | ---------------------------------------------------------------------- |
+| `action`            | null              | (required) Define an action after slidding a button and return boolean |
+| `child`             | null              | For more customizable button add your own widget                       |
+| `vibrationFlag`     | false             | controls vibration on successful dismissed                             |
+| `height`            | null ?? 70        | Gives a height to a widget                                             |
+| `width`             | null ?? 250       | Gives a width to a widget                                              |
+| `backgroundColor`   | Color(0xffececec) | Gives a background color to a widget                                   |
+| `baseColor`         | Color(0xff4a4a4a) | Gives a shimmer base color to a widget                                 |
+| `highlightedColor`  | Colors.white      | Gives a shimmer highlighted color  to a widget                         |
+| `buttonColor`       | Colors.black      | Gives a color to a slidder button                                      |
+| `label`             | null              | A text widget which assigns a label.                                   |
+| `alignLabel`        | Alignment(0.4, 0) | Aligns text label                                                      |
+| `boxShadow`         | null              | Gives a shadow to a slidder button                                     |
+| `icon`              | null              | A widget to provide an icon to a button                                |
+| `shimmer`           | false             | enables/disables shimmer effect on the label                           |
+| `buttonSize`        | null ?? 60        | Gives size to a button                                                 |
+| `dismissThresholds` | 1.0               | The offset threshold when it should be considered dismissed            |
 
 <br>
 <br>
-
 
 # 👍 Contribution
+
 1. Fork it
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -m 'Add some feature')
