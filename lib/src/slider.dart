@@ -44,6 +44,10 @@ class SliderButton extends StatefulWidget {
 
   final bool disable;
 
+  /// **New properties**
+  final bool sliderPositionLeft; 
+  final bool slideLeftToRight; 
+
   SliderButton({
     required this.action,
     this.radius = 100,
@@ -64,6 +68,8 @@ class SliderButton extends StatefulWidget {
     this.icon,
     this.dismissThresholds = 0.75,
     this.disable = false,
+    this.sliderPositionLeft = true, 
+    this.slideLeftToRight = true, 
   }) : assert((buttonSize ?? 60) <= (height));
 
   @override
@@ -91,16 +97,15 @@ class _SliderButtonState extends State<SliderButton> {
             color:
                 widget.disable ? Colors.grey.shade700 : widget.backgroundColor,
             borderRadius: BorderRadius.circular(widget.radius)),
-        alignment: Alignment.centerLeft,
+        alignment: widget.sliderPositionLeft ? Alignment.centerLeft : Alignment.centerRight,
         child: Stack(
-          alignment: Alignment.centerLeft,
+          alignment: widget.sliderPositionLeft ? Alignment.centerLeft : Alignment.centerRight,
           children: <Widget>[
             Container(
               alignment: widget.alignLabel,
               child: widget.shimmer && !widget.disable
                   ? Shimmer.fromColors(
-                      baseColor:
-                          widget.disable ? Colors.grey : widget.baseColor,
+                      baseColor: widget.disable ? Colors.grey : widget.baseColor,
                       highlightColor: widget.highlightedColor,
                       child: widget.label ?? Text(''),
                     )
@@ -110,39 +115,17 @@ class _SliderButtonState extends State<SliderButton> {
                 ? Tooltip(
                     verticalOffset: 50,
                     message: 'Button is disabled',
-                    child: Container(
-                      width: (widget.width) - (widget.height),
-                      height: (widget.height - 70),
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(
-                        left: (widget.height -
-                                (widget.buttonSize == null
-                                    ? widget.height * 0.9
-                                    : widget.buttonSize)!) /
-                            2,
-                      ),
-                      child: widget.child ??
-                          Container(
-                            height: widget.buttonSize ?? widget.height,
-                            width: widget.buttonSize ?? widget.height,
-                            decoration: BoxDecoration(
-                                boxShadow: widget.boxShadow != null
-                                    ? [
-                                        widget.boxShadow!,
-                                      ]
-                                    : null,
-                                color: Colors.grey,
-                                borderRadius:
-                                    BorderRadius.circular(widget.radius)),
-                            child: Center(child: widget.icon),
-                          ),
-                    ),
+                    child: _buildSliderButton(),
                   )
                 : Dismissible(
                     key: UniqueKey(),
-                    direction: DismissDirection.startToEnd,
+                    direction: widget.slideLeftToRight
+                        ? DismissDirection.startToEnd
+                        : DismissDirection.endToStart,
                     dismissThresholds: {
-                      DismissDirection.startToEnd: widget.dismissThresholds
+                      widget.slideLeftToRight
+                          ? DismissDirection.startToEnd
+                          : DismissDirection.endToStart: widget.dismissThresholds
                     },
                     confirmDismiss: (_) async {
                       bool result;
@@ -157,8 +140,8 @@ class _SliderButtonState extends State<SliderButton> {
                       setState(() {
                         flag = !flag;
                       });
-                      final hasVibrator =
-                          await Vibration.hasVibrator() ?? false;
+
+                      final hasVibrator = await Vibration.hasVibrator() ?? false;
                       if (widget.vibrationFlag && hasVibrator) {
                         try {
                           Vibration.vibrate(duration: 200);
@@ -168,36 +151,37 @@ class _SliderButtonState extends State<SliderButton> {
                       }
                       return true;
                     },
-                    child: Container(
-                      width:
-                          widget.width - (widget.buttonWidth ?? widget.height),
-                      height: widget.height,
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(
-                        left: (widget.height -
-                                (widget.buttonSize == null
-                                    ? widget.height
-                                    : widget.buttonSize!)) /
-                            2,
-                      ),
-                      child: widget.child ??
-                          Container(
-                            height: widget.buttonSize ?? widget.height,
-                            width: widget.buttonSize ?? widget.height,
-                            decoration: BoxDecoration(
-                                boxShadow: widget.boxShadow != null
-                                    ? [
-                                        widget.boxShadow!,
-                                      ]
-                                    : null,
-                                color: widget.buttonColor,
-                                borderRadius:
-                                    BorderRadius.circular(widget.radius)),
-                            child: Center(child: widget.icon),
-                          ),
-                    ),
+                    child: _buildSliderButton(),
                   ),
           ],
         ),
+      );
+
+  Widget _buildSliderButton() => Container(
+        width: widget.width - (widget.buttonWidth ?? widget.height),
+        height: widget.height,
+        alignment: widget.sliderPositionLeft ? Alignment.centerLeft : Alignment.centerRight,
+        padding: EdgeInsets.only(
+          left: widget.sliderPositionLeft
+              ? (widget.height - (widget.buttonSize ?? widget.height)) / 2
+              : 0,
+          right: widget.sliderPositionLeft
+              ? 0
+              : (widget.height - (widget.buttonSize ?? widget.height)) / 2,
+        ),
+        child: widget.child ??
+            Container(
+              height: widget.buttonSize ?? widget.height,
+              width: widget.buttonSize ?? widget.height,
+              decoration: BoxDecoration(
+                  boxShadow: widget.boxShadow != null
+                      ? [
+                          widget.boxShadow!,
+                        ]
+                      : null,
+                  color: widget.buttonColor,
+                  borderRadius: BorderRadius.circular(widget.radius)),
+              child: Center(child: widget.icon),
+            ),
       );
 }
