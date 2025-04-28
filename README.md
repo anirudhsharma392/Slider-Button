@@ -105,9 +105,10 @@ SliderButton(
 
 There are several options that allow for more control:
 
-| Properties            | Default           | Description                                                            |
-| --------------------- | ----------------- | ---------------------------------------------------------------------- |
+| Properties          | Default           | Description                                                            |
+|---------------------| ----------------- |------------------------------------------------------------------------|
 | `action`            | null              | (required) Define an action after slidding a button and return boolean |
+| `buttonKey`         | null              | Can be used to specify a custom key. Useful for using dynamic labels.  |
 | `child`             | null              | For more customizable button add your own widget                       |
 | `vibrationFlag`     | false             | controls vibration on successful dismissed                             |
 | `height`            | null ?? 70        | Gives a height to a widget                                             |
