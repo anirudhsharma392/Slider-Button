@@ -23,6 +23,8 @@ class MainApp extends StatelessWidget {
             Center(
                 child: SliderButton(
               action: () async {
+                debugPrint("Button 1 action");
+
                 ///Do something here
                 return false;
               },
@@ -48,7 +50,7 @@ class MainApp extends StatelessWidget {
             SliderButton(
               action: () async {
                 ///Do something here OnSlide
-                print("working");
+                debugPrint("Button 2 action");
                 return false;
               },
 

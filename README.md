@@ -1,4 +1,4 @@
-# Slider Button v2.1.0
+# Slider Button v3.0.0
 
 ![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
 
@@ -11,6 +11,16 @@ Highly customizable iphone alike looking widget.
 </p>
 
 ### Null safety supported
+
+### Features
+
+- **Circle or rectangle** — Use `radius` to switch between circular and rectangular slider.
+- **Shimmer label** — Optional shimmer effect on the label (customizable colors).
+- **Vibration** — Optional haptic feedback on successful slide (`vibrationFlag`).
+- **Customizable size** — `buttonSize`, `buttonWidth`, `height`, `width` for full control.
+- **Disabled state** — Use `disable: true` to grey out and prevent sliding (with tooltip).
+- **RTL support** — Use `rightToLeftLocale: true` for right-to-left slide direction.
+- **Dismiss threshold** — Control how far the user must slide to confirm (`dismissThresholds`).
 
 ## How to use
 
@@ -105,25 +115,28 @@ SliderButton(
 
 There are several options that allow for more control:
 
-| Properties          | Default           | Description                                                            |
-|---------------------| ----------------- |------------------------------------------------------------------------|
-| `action`            | null              | (required) Define an action after slidding a button and return boolean |
-| `buttonKey`         | null              | Can be used to specify a custom key. Useful for using dynamic labels.  |
-| `child`             | null              | For more customizable button add your own widget                       |
-| `vibrationFlag`     | false             | controls vibration on successful dismissed                             |
-| `height`            | null ?? 70        | Gives a height to a widget                                             |
-| `width`             | null ?? 250       | Gives a width to a widget                                              |
-| `backgroundColor`   | Color(0xffececec) | Gives a background color to a widget                                   |
-| `baseColor`         | Color(0xff4a4a4a) | Gives a shimmer base color to a widget                                 |
-| `highlightedColor`  | Colors.white      | Gives a shimmer highlighted color  to a widget                         |
-| `buttonColor`       | Colors.black      | Gives a color to a slidder button                                      |
-| `label`             | null              | A text widget which assigns a label.                                   |
-| `alignLabel`        | Alignment(0.4, 0) | Aligns text label                                                      |
-| `boxShadow`         | null              | Gives a shadow to a slidder button                                     |
-| `icon`              | null              | A widget to provide an icon to a button                                |
-| `shimmer`           | false             | enables/disables shimmer effect on the label                           |
-| `buttonSize`        | null ?? 60        | Gives size to a button                                                 |
-| `dismissThresholds` | 1.0               | The offset threshold when it should be considered dismissed            |
+| Properties          | Default            | Description                                                                 |
+|---------------------|--------------------|-----------------------------------------------------------------------------|
+| `action`            | —                  | (required) Define an action after sliding; return `true` to dismiss, `false` to keep. |
+| `buttonKey`         | null               | Custom key for the button. Useful for dynamic labels.                      |
+| `child`             | null               | Your own widget for a fully customizable slider button.                     |
+| `vibrationFlag`     | false              | Enable haptic vibration on successful slide.                               |
+| `height`            | 70                 | Height of the widget.                                                       |
+| `width`             | 270                | Width of the widget.                                                       |
+| `buttonSize`        | null (→ 60)        | Size of the sliding button (square). Must be ≤ height.                     |
+| `buttonWidth`       | null               | Width of the button when not squared (e.g. wide sliders).                  |
+| `backgroundColor`   | Color(0xffe0e0e0)  | Background color of the track.                                             |
+| `baseColor`         | Colors.black87     | Shimmer base color for the label.                                          |
+| `highlightedColor`  | Colors.white       | Shimmer highlight color for the label.                                     |
+| `buttonColor`       | Colors.white       | Color of the sliding button.                                               |
+| `label`             | null               | Widget used as the label (e.g. `Text`).                                   |
+| `alignLabel`        | Alignment(0.6, 0)  | Alignment of the label.                                                    |
+| `boxShadow`         | null               | Shadow for the sliding button.                                             |
+| `icon`             | null               | Widget shown on the sliding button (e.g. icon or text).                   |
+| `shimmer`           | true               | Enable or disable shimmer effect on the label.                             |
+| `dismissThresholds` | 0.75               | Drag threshold (0.0–1.0); e.g. 0.75 = 75% of width to dismiss.             |
+| `disable`           | false              | When true, disables sliding and shows disabled state with tooltip.         |
+| `rightToLeftLocale` | false              | When true, slide direction is right-to-left (for RTL locales).             |
 
 <br>
 <br>
