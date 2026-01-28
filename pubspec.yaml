@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  vibration: ^1.8.4
+  vibration: ^3.1.3
   shimmer: ^3.0.0
   flutter:
     sdk: flutter
@@ -20,5 +20,5 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
-flutter:
+# flutter:
 
