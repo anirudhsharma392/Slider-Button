@@ -7,6 +7,12 @@ add a spring effect on tapping a handler of a button
 * Added `disable` — disables the slider and shows disabled state with tooltip
 * Added `rightToLeftLocale` — support for right-to-left slide direction
 * Added `buttonWidth` — custom width for the sliding button when not squared
+* Added **glass effect** for the track:
+  * `useGlassEffect` — frosted glass (blur + translucency) on the track
+  * `glassBlurSigma` — blur strength when glass effect is enabled
+  * `glassBorderColor` — optional border color (e.g. white) for glass track
+  * `glassBorderWidth` — border width when `glassBorderColor` is set
+* README updated with full feature list and property table
 * Bug fixes
 
 ## [2.1.0] : 15/01/23.

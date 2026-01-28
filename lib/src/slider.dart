@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:vibration/vibration.dart';
@@ -48,6 +50,18 @@ class SliderButton extends StatefulWidget {
   /* Support for right-to-left locales */
   final bool rightToLeftLocale;
 
+  /// When true, the track uses a frosted glass effect (blur + translucency).
+  final bool useGlassEffect;
+
+  /// Blur sigma for the glass effect when [useGlassEffect] is true.
+  final double glassBlurSigma;
+
+  /// Border color for the glass track when [useGlassEffect] is true. Null = no border.
+  final Color? glassBorderColor;
+
+  /// Border width for the glass track when [useGlassEffect] is true.
+  final double glassBorderWidth;
+
   SliderButton({
     required this.action,
     this.radius = 100,
@@ -70,6 +84,10 @@ class SliderButton extends StatefulWidget {
     this.disable = false,
     this.buttonKey,
     this.rightToLeftLocale = false,
+    this.useGlassEffect = false,
+    this.glassBlurSigma = 20,
+    this.glassBorderColor,
+    this.glassBorderWidth = 1.0,
   }) : assert((buttonSize ?? 60) <= (height));
 
   @override
@@ -90,15 +108,7 @@ class _SliderButtonState extends State<SliderButton> {
     return flag == true ? _control() : Container();
   }
 
-  Widget _control() => Container(
-        height: widget.height,
-        width: widget.width,
-        decoration: BoxDecoration(
-            color:
-                widget.disable ? Colors.grey.shade700 : widget.backgroundColor,
-            borderRadius: BorderRadius.circular(widget.radius)),
-        alignment: Alignment.centerLeft,
-        child: Stack(
+  Widget _buildTrackContent() => Stack(
           alignment: Alignment.centerLeft,
           children: <Widget>[
             Container(
@@ -211,6 +221,43 @@ class _SliderButtonState extends State<SliderButton> {
                     ),
                   ),
           ],
+        );
+
+  Widget _control() {
+    final content = _buildTrackContent();
+    final hasGlassBorder = widget.useGlassEffect &&
+        widget.glassBorderColor != null &&
+        widget.glassBorderWidth > 0;
+    final decoration = BoxDecoration(
+      color:
+          widget.disable ? Colors.grey.shade700 : widget.backgroundColor,
+      borderRadius: BorderRadius.circular(widget.radius),
+      border: hasGlassBorder
+          ? Border.all(
+              color: widget.glassBorderColor!,
+              width: widget.glassBorderWidth,
+            )
+          : null,
+    );
+    final track = Container(
+      height: widget.height,
+      width: widget.width,
+      decoration: decoration,
+      alignment: Alignment.centerLeft,
+      child: content,
+    );
+    if (widget.useGlassEffect) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(widget.radius),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: widget.glassBlurSigma,
+            sigmaY: widget.glassBlurSigma,
+          ),
+          child: track,
         ),
       );
+    }
+    return track;
+  }
 }

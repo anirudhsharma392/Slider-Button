@@ -6,7 +6,7 @@ This package provides an easy implementation of a Slider Button to cancel curren
 Highly customizable iphone alike looking widget.
 
 <p>
-    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button_3.gif?raw=true"/>
+    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/buttons.gif?raw=true"/>
 
 </p>
 
@@ -21,6 +21,7 @@ Highly customizable iphone alike looking widget.
 - **Disabled state** — Use `disable: true` to grey out and prevent sliding (with tooltip).
 - **RTL support** — Use `rightToLeftLocale: true` for right-to-left slide direction.
 - **Dismiss threshold** — Control how far the user must slide to confirm (`dismissThresholds`).
+- **Glass effect** — Frosted glass track with blur and optional white border (`useGlassEffect`, `glassBlurSigma`, `glassBorderColor`, `glassBorderWidth`).
 
 ## How to use
 
@@ -30,39 +31,9 @@ This is a Circle type widget.
 You just need to define the border radius to swap between rectangle and circle type widget.
 
 <p>
-    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button_1.gif?raw=true"/>
+    <img src="https://github.com/anirudhsharma392/Slider-Button/blob/master/screenshots/button_3.gif?raw=true"/>
 
 </p>
-
-```dart
-import 'package:slider_button/slider_button.dart';
-
-```
-
-```dart
-Center(child: SliderButton(
-      action: () async{
-    ///Do something here OnSlide
-    return true; //return false if you want to avoid dismissing the widget in the tree. 
-        },
-       label: Text(
-          "Slide to cancel Event",
-          style: TextStyle(
-              color: Color(0xff4a4a4a), fontWeight: FontWeight.w500, fontSize: 17),
-        ),
-      icon: Text(
-        "x",
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w400,
-          fontSize: 44,
-        ),
-      ),
-
-
-    ));
-
-```
 
 ### Type 2
 
@@ -137,6 +108,10 @@ There are several options that allow for more control:
 | `dismissThresholds` | 0.75               | Drag threshold (0.0–1.0); e.g. 0.75 = 75% of width to dismiss.             |
 | `disable`           | false              | When true, disables sliding and shows disabled state with tooltip.         |
 | `rightToLeftLocale` | false              | When true, slide direction is right-to-left (for RTL locales).             |
+| `useGlassEffect`    | false              | When true, track uses frosted glass (blur + translucency).                  |
+| `glassBlurSigma`    | 20                 | Blur strength for the glass track when `useGlassEffect` is true.          |
+| `glassBorderColor`  | null               | Border color for the glass track (e.g. white); null = no border.           |
+| `glassBorderWidth`  | 1.0                | Border width for the glass track when `glassBorderColor` is set.          |
 
 <br>
 <br>
