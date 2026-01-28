@@ -2,7 +2,7 @@
 add a gradient to the button.
 add a spring effect on tapping a handler of a button
 
-## [3.0.0]
+## [3.1.0]
 
 * Added `disable` — disables the slider and shows disabled state with tooltip
 * Added `rightToLeftLocale` — support for right-to-left slide direction

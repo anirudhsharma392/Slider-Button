@@ -1,4 +1,4 @@
-# Slider Button v3.0.0
+# Slider Button v3.1.0
 
 ![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
 
