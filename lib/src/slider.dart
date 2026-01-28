@@ -45,6 +45,8 @@ class SliderButton extends StatefulWidget {
   final bool disable;
 
   final Key? buttonKey;
+  /* Support for right-to-left locales */
+  final bool rightToLeftLocale;
 
   SliderButton({
     required this.action,
@@ -67,6 +69,7 @@ class SliderButton extends StatefulWidget {
     this.dismissThresholds = 0.75,
     this.disable = false,
     this.buttonKey,
+    this.rightToLeftLocale = false,
   }) : assert((buttonSize ?? 60) <= (height));
 
   @override
@@ -143,10 +146,18 @@ class _SliderButtonState extends State<SliderButton> {
                   )
                 : Dismissible(
                     key: widget.buttonKey ?? UniqueKey(),
-                    direction: DismissDirection.startToEnd,
-                    dismissThresholds: {
-                      DismissDirection.startToEnd: widget.dismissThresholds
-                    },
+                    direction: widget.rightToLeftLocale
+                        ? DismissDirection.endToStart
+                        : DismissDirection.startToEnd,
+                    dismissThresholds: widget.rightToLeftLocale
+                        ? {
+                            DismissDirection.endToStart:
+                                widget.dismissThresholds
+                          }
+                        : {
+                            DismissDirection.startToEnd:
+                                widget.dismissThresholds
+                          },
                     confirmDismiss: (_) async {
                       bool result;
                       try {
@@ -160,8 +171,7 @@ class _SliderButtonState extends State<SliderButton> {
                       setState(() {
                         flag = !flag;
                       });
-                      final hasVibrator =
-                          await Vibration.hasVibrator() ?? false;
+                      final hasVibrator = await Vibration.hasVibrator();
                       if (widget.vibrationFlag && hasVibrator) {
                         try {
                           Vibration.vibrate(duration: 200);
