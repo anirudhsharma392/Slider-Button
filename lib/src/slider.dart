@@ -44,6 +44,9 @@ class SliderButton extends StatefulWidget {
 
   final bool disable;
 
+  /* Support for right-to-left locales */
+  final bool rightToLeftLocale;
+
   SliderButton({
     required this.action,
     this.radius = 100,
@@ -64,6 +67,7 @@ class SliderButton extends StatefulWidget {
     this.icon,
     this.dismissThresholds = 0.75,
     this.disable = false,
+    this.rightToLeftLocale = false,
   }) : assert((buttonSize ?? 60) <= (height));
 
   @override
@@ -140,10 +144,18 @@ class _SliderButtonState extends State<SliderButton> {
                   )
                 : Dismissible(
                     key: UniqueKey(),
-                    direction: DismissDirection.startToEnd,
-                    dismissThresholds: {
-                      DismissDirection.startToEnd: widget.dismissThresholds
-                    },
+                    direction: widget.rightToLeftLocale
+                        ? DismissDirection.endToStart
+                        : DismissDirection.startToEnd,
+                    dismissThresholds: widget.rightToLeftLocale
+                        ? {
+                            DismissDirection.endToStart:
+                                widget.dismissThresholds
+                          }
+                        : {
+                            DismissDirection.startToEnd:
+                                widget.dismissThresholds
+                          },
                     confirmDismiss: (_) async {
                       bool result;
                       try {
